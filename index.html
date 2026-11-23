@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratorio web · Reto 10</title>
+  <!-- Orden de carga. La hoja del laboratorio se declara después de Bootstrap para ajustar su diseño. -->
+  <link rel="stylesheet" href="recursos/bibliotecas/bootstrap-5.3.8.min.css">
+  <link rel="stylesheet" href="recursos/estilos/01_laboratorio_web.css">
+  <script src="recursos/bibliotecas/bootstrap-5.3.8.bundle.min.js" defer></script>
+  <!-- Script del laboratorio. Inspecciona relaciones del DOM y muestra valores de CSS calculados. -->
+  <script src="recursos/scripts/01_laboratorio_web.js" defer></script>
+  <script src="recursos/bibliotecas/qrcodejs-1.0.0.min.js" defer></script>
+  <script src="recursos/scripts/compartir_qr.js" defer></script>
+</head>
+
+
+<body>
+  <a class="visually-hidden-focusable" href="#contenido">Saltar al contenido</a>
+  <header class="masthead">
+    <div class="container py-3 d-flex flex-wrap justify-content-between gap-2">
+      <a class="lab-brand" href="#contenido">Reto 10 · Laboratorio web</a>
+      <nav class="d-flex flex-wrap gap-3" aria-label="Taller completo">
+        <a href="paginas/laboratorio/01_dom.html">Práctica de JS</a>
+        <a href="paginas/grafos/02_grafo.html">Grafo PPI</a>
+        <a href="paginas/casos/03_protoqsar.html">Fase final · UX de ProtoQSAR</a>
+        <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-qr">Compartir por QR</button>
+      </nav>
+    </div>
+  </header>
+  <!-- container centra el contenido. Las clases py controlan el espacio vertical y lg indica un punto de ruptura. -->
+  <main id="contenido" class="container py-4 py-lg-5">
+    <div class="row g-4">
+      <!-- El índice ocupa toda la fila en móvil y tres de las doce columnas desde lg. -->
+      <aside class="col-12 col-lg-3">
+        <nav class="lab-nav" aria-label="Secciones del laboratorio">
+          <a href="#ciclo">Ciclo de evolución web</a>
+          <a href="#html">HTML y árbol DOM</a>
+          <a href="#css">CSS y herencia</a>
+          <a href="#bootstrap">Bootstrap responsive</a>
+          <a href="#actividad">Actividad</a>
+          <a href="#cierre-ux">Fase final · ProtoQSAR</a>
+          <a href="documentacion/Manual_HTML_CSS_Bootstrap.md">Manual de consulta</a>
+        </nav>
+      </aside>
+      <div class="col-12 col-lg-9">
+        <h1>Cómo se construye una página web</h1>
+        <p class="lead">Inspecciona una ficha del Reto 10, descubre de dónde viene su estilo y conviértela en una interfaz responsive.</p>
+
+        <!-- Cada enlace abre un archivo distinto. Compara su código fuente para localizar qué incorpora cada etapa. -->
+        <section class="lesson" id="ciclo" aria-labelledby="ciclo-titulo">
+          <h2 id="ciclo-titulo">Ciclo de evolución web</h2>
+          <p>Abre las cuatro versiones del panel de seguimiento del Reto 10. Compara el salto entre etapas y cambia de versión desde su cabecera.</p>
+          <ol class="mb-3">
+            <li><a href="paginas/laboratorio/01_ciclo_1_html.html">Solo HTML5</a>. Inspecciona encabezados, artículos, listas, tabla y formulario con el estilo predeterminado del navegador.</li>
+            <li><a href="paginas/laboratorio/01_ciclo_2_css.html">HTML5 + CSS3</a>. Sigue las reglas de color, herencia y cuadrícula responsive.</li>
+            <li><a href="paginas/laboratorio/01_ciclo_3_bootstrap.html">HTML5 + CSS3 + Bootstrap</a>. Compara la cuadrícula y las tarjetas, abre el acordeón de indicadores y despliega los criterios de revisión.</li>
+            <li><a href="paginas/laboratorio/01_ciclo_4_avanzado.html">Edición moderna bilingüe</a>. Prueba el banner, el menú de versiones, el cambio de idioma, los filtros y el formulario. Identifica la aportación de cada tecnología.</li>
+          </ol>
+          <a href="documentacion/Guia_Ciclo_Web.md">Guía para comparar y editar el código</a>
+        </section>
+
+        <!-- El visualizador del DOM busca un elemento por id y describe su padre, hijos y hermanos. -->
+        <section class="lesson" id="html" aria-labelledby="html-titulo">
+          <h2 id="html-titulo">HTML y árbol DOM</h2>
+          <p>El navegador lee el HTML y construye el DOM. Inspecciona la tarjeta con F12 y compara el árbol de Elementos con el archivo fuente. Los encabezados nombran niveles de contenido. El CSS decide su tamaño.</p>
+          <div class="table-responsive">
+            <table class="table">
+              <thead><tr><th scope="col">Elemento</th><th scope="col">Decisión de estructura</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><code>head</code> y <code>body</code></th><td>Metadatos, título, estilos y scripts en el primero. Contenido de la página en el segundo.</td></tr>
+                <tr><th scope="row"><code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code></th><td>Presentación, navegación, contenido principal y cierre. Una página puede tener un encabezado interno dentro de un <code>article</code>.</td></tr>
+                <tr><th scope="row"><code>h1</code>, <code>h2</code>, <code>h3</code></th><td>En este laboratorio, el tema de la página, los capítulos y sus subtemas. Mantén niveles consecutivos al anidar.</td></tr>
+                <tr><th scope="row"><code>section</code> y <code>article</code></th><td>Agrupa un tema con título o identifica un contenido autocontenido, respectivamente.</td></tr>
+                <tr><th scope="row"><code>div</code> y <code>span</code></th><td>Agrupaciones genéricas para estilo o programación. <code>div</code> agrupa bloques y <code>span</code> suele delimitar texto en línea.</td></tr>
+                <tr><th scope="row"><code>ul</code>, <code>ol</code>, <code>li</code> y <code>dl</code></th><td>Elementos sin orden, pasos ordenados y pares término–descripción con <code>dt</code> y <code>dd</code>.</td></tr>
+                <tr><th scope="row"><code>a</code> y <code>button</code></th><td>Navegar a una URL o a un ancla y ejecutar una acción en la página, respectivamente.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Explorar parentescos</h3>
+          <label class="form-label" for="elemento-dom">Nodo que quieres inspeccionar</label>
+          <select id="elemento-dom" class="form-select mb-3">
+            <option value="ficha">article · ficha</option>
+            <option value="titulo-ficha">h4 · título de la ficha</option>
+            <option value="grupo-ficha">div · agrupador</option>
+            <option value="lista-ficha">ul · lista</option>
+            <option value="fila-ficha">li · primera entrada</option>
+            <option value="detalle-ficha">span · texto dentro del párrafo</option>
+          </select>
+          <article id="ficha" class="sample-card ficha" aria-labelledby="titulo-ficha">
+            <h4 id="titulo-ficha">Ficha de la red de TLR2</h4>
+            <div id="grupo-ficha">
+              <p>Alcance <span id="detalle-ficha">demostración con datos sintéticos</span>.</p>
+              <ul id="lista-ficha">
+                <li id="fila-ficha">Nodos de la red</li>
+                <li>Aristas registradas</li>
+              </ul>
+            </div>
+          </article>
+          <pre id="parentesco" class="output" aria-live="polite"></pre>
+          <pre><code>&lt;main&gt;
+  &lt;h1&gt;Red de proteínas&lt;/h1&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Método&lt;/h2&gt;
+    &lt;article&gt;
+      &lt;h3&gt;Ficha de la red&lt;/h3&gt;
+      &lt;div class="ficha"&gt;
+        &lt;ul&gt;&lt;li&gt;Nodos&lt;/li&gt;&lt;li&gt;Aristas&lt;/li&gt;&lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+          <details>
+            <summary>Cuándo usar listas distintas</summary>
+            <ul><li>Fuentes del proyecto</li><li>Tipos de arista<ul><li>Asociación</li><li>Relación dirigida</li></ul></li></ul>
+            <ol><li>Inspeccionar el nodo.</li><li>Editar su clase.</li><li>Recargar y verificar.</li></ol>
+            <dl><dt>Grado</dt><dd>Número de aristas incidentes en un grafo simple.</dd><dt>Arista</dt><dd>Enlace entre dos nodos.</dd></dl>
+          </details>
+        </section>
+
+        <!-- Las casillas activan clases en el ejemplo. getComputedStyle lee el resultado de la cascada. -->
+        <section class="lesson" id="css" aria-labelledby="css-titulo">
+          <h2 id="css-titulo">CSS, herencia y cascada</h2>
+          <p>Un selector identifica elementos. Una propiedad heredable puede tomar el valor calculado del padre cuando el hijo carece de una declaración propia. La cascada resuelve reglas que compiten por la misma propiedad del mismo elemento.</p>
+          <pre><code>.ficha li   { color: navy; }   /* cualquier li descendiente */
+.ficha > ul { margin: 0; }     /* solo un ul hijo directo */
+h2 + p      { margin: 0; }     /* p inmediatamente posterior a h2 */
+h2 ~ p      { color: navy; }   /* hermanos p posteriores a h2 */</code></pre>
+          <h3>Experimentar con reglas en conflicto</h3>
+          <p>El párrafo hereda el color del padre. El <code>span</code> usa una regla propia. Activa cada casilla y observa el color calculado.</p>
+          <div class="d-flex flex-wrap gap-3 mb-3">
+            <label><input id="cambiar-padre" class="form-check-input" type="checkbox"> Cambiar color del padre</label>
+            <label><input id="forzar-herencia" class="form-check-input" type="checkbox"> Aplicar <code>color: inherit</code> al span</label>
+          </div>
+          <div id="ejemplo-cascada" class="marco">
+            <p id="texto-padre">Informe de red · <span id="texto-hijo" class="estado-color">resultado provisional</span></p>
+          </div>
+          <pre id="valores-css" class="output" aria-live="polite"></pre>
+          <pre><code>.marco { color: #155e4a; padding: 16px; border: 2px solid; }
+.estado-color { color: #6940a5; }
+.marco .estado-color { color: #a13a18; } /* (0,2,0) vence a (0,1,0) */
+.marco.forzar-herencia .estado-color { color: inherit; }</code></pre>
+          <div class="table-responsive">
+            <table class="table">
+              <thead><tr><th scope="col">Mecanismo</th><th scope="col">Qué comprobar en DevTools</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Herencia</th><td><code>color</code> y, normalmente, <code>font-family</code> pasan al descendiente. <code>margin</code>, <code>padding</code>, <code>border</code> y <code>background-color</code> tienen su propio valor. El fondo transparente permite ver el del padre.</td></tr>
+                <tr><th scope="row">Especificidad y orden</th><td>A igualdad de origen, importancia y capa, compara ID, clase y etiqueta. Si empatan, en estos ejemplos gana la última regla. Revisa la declaración tachada en Estilos.</td></tr>
+                <tr><th scope="row">Modelo de caja</th><td>Contenido, relleno, borde y margen. Con <code>box-sizing: border-box</code>, el ancho especificado incluye relleno y borde.</td></tr>
+                <tr><th scope="row">Responsive</th><td><code>@media (min-width: 992px)</code> modifica la navegación lateral de este laboratorio en pantallas anchas. Prueba 390, 768 y 1200 px.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- La cuadrícula usa clases responsive y el acordeón usa el JavaScript incluido en el bundle. -->
+        <section class="lesson" id="bootstrap" aria-labelledby="bootstrap-titulo">
+          <h2 id="bootstrap-titulo">Bootstrap para una página responsive</h2>
+          <p>Bootstrap 5.3.8 combina una cuadrícula, componentes y utilidades de CSS. Los componentes interactivos, como el acordeón, utilizan también el paquete JavaScript. Esta página lleva ambos archivos incluidos.</p>
+          <h3>Cuadrícula y utilidades aplicadas</h3>
+          <div class="row g-3 mb-3" id="rejilla-bootstrap">
+            <div class="col-12 col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h4 class="h5 card-title">Nodos</h4><p class="card-text mb-0">Proteínas representadas.</p></div></div></div>
+            <div class="col-12 col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h4 class="h5 card-title">Aristas</h4><p class="card-text mb-0">Enlaces del ejemplo.</p></div></div></div>
+            <div class="col-12 col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h4 class="h5 card-title">Rutas</h4><p class="card-text mb-0">Caminos de la red.</p></div></div></div>
+          </div>
+          <p>A 390 px, una tarjeta por fila. Desde <code>md</code> (768 px), dos. Desde <code>lg</code> (992 px), tres. <code>g-3</code> añade separación. La clase <code>h5</code> cambia el aspecto del <code>h4</code> y conserva su nivel HTML.</p>
+          <div class="alert alert-info d-none d-md-block">Este aviso usa dos utilidades de visualización. Aparece desde <code>md</code>.</div>
+          <div class="accordion mb-3" id="acordeon-lab">
+            <div class="accordion-item">
+              <!-- El botón y el panel se relacionan mediante data-bs-target, id y aria-controls. -->
+              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#detalle-boots" aria-expanded="false" aria-controls="detalle-boots">Abrir el ejemplo de un componente con JavaScript</button></h3>
+              <div id="detalle-boots" class="accordion-collapse collapse"><div class="accordion-body">El botón usa <code>data-bs-toggle="collapse"</code>. Su destino, <code>#detalle-boots</code>, coincide con el ID de este panel. Comprueba el cambio de <code>aria-expanded</code> al abrir y cerrar.</div></div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead><tr><th scope="col">Consulta</th><th scope="col">Qué buscar y probar</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><a href="https://getbootstrap.com/docs/5.3/layout/grid/">Grid</a> y <a href="https://getbootstrap.com/docs/5.3/layout/breakpoints/">Breakpoints</a></th><td><code>container</code>, <code>row</code>, <code>col-*</code>, anchos mínimos y el sistema de doce columnas.</td></tr>
+                <tr><th scope="row"><a href="https://getbootstrap.com/docs/5.3/utilities/spacing/">Spacing</a>, <a href="https://getbootstrap.com/docs/5.3/utilities/display/">Display</a> y <a href="https://getbootstrap.com/docs/5.3/utilities/flex/">Flex</a></th><td><code>mt-3</code>, <code>p-3</code>, <code>mx-auto</code>, <code>d-none d-md-block</code> y <code>d-flex flex-wrap gap-2</code>.</td></tr>
+                <tr><th scope="row"><a href="https://getbootstrap.com/docs/5.3/components/card/">Cards</a>, <a href="https://getbootstrap.com/docs/5.3/components/accordion/">Accordion</a> y <a href="https://getbootstrap.com/docs/5.3/forms/overview/">Forms</a></th><td>Anatomía, ejemplos, atributos, accesibilidad y dependencias JavaScript.</td></tr>
+                <tr><th scope="row"><a href="https://getbootstrap.com/docs/5.3/examples/">Ejemplos</a>, <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a> y <a href="https://getbootstrap.com/docs/5.3/utilities/api/">Utilities API</a></th><td>Patrones de página, iconos de carga independiente y generación de utilidades con Sass para un proyecto avanzado.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Para resolver una duda, parte de la tarea. Busca «Grid» para distribuir tarjetas, «Spacing» para separarlas y «Accordion» para desplegar información. Copia el ejemplo mínimo y prueba el resultado con la barra de dispositivos y la pestaña Estilos.</p>
+        </section>
+
+        <section class="lesson" id="actividad" aria-labelledby="actividad-titulo">
+          <h2 id="actividad-titulo">Actividad de edición</h2>
+          <ol>
+            <li>Añade una cuarta tarjeta con un encabezado al mismo nivel y una lista ordenada de dos pasos.</li>
+            <li>Deja dos columnas también en escritorio. Cambia las cuatro tarjetas y verifica tres anchos.</li>
+            <li>Aplica un color al contenedor de tu nueva tarjeta. Identifica una propiedad heredada y una que no se hereda mediante la pestaña Calculado.</li>
+            <li>Abre la <a href="paginas/laboratorio/01_dom.html">práctica de JavaScript</a>, duplica una tarjeta con <code>data-area="retencion"</code> y verifica el contador tras recargar.</li>
+          </ol>
+          <details>
+            <summary>Comprobar la solución</summary>
+            <p>Usa <code>col-12 col-md-6</code> en las cuatro columnas. El color puede heredarse, mientras que el relleno corresponde a la caja que lo declara. En la práctica de JavaScript, el filtro Retención debe mostrar dos tarjetas tras duplicar la existente.</p>
+          </details>
+        </section>
+        <section class="lesson mb-0" id="cierre-ux" aria-labelledby="cierre-ux-titulo">
+          <h2 id="cierre-ux-titulo">Fase final · Experiencia de usuario de ProtoQSAR</h2>
+          <p>Después del grafo, el segundo eje del Reto 10 es evaluar la portada de ProtoQSAR. Contrasta los recorridos hacia ProtoPRED y hacia un estudio a medida, prueba la propuesta y registra los resultados.</p>
+          <a class="btn btn-outline-primary" href="paginas/casos/03_protoqsar.html">Abrir la auditoría y el prototipo</a>
+        </section>
+      </div>
+    </div>
+  </main>
+  <!-- El modal usa Bootstrap. data-qr-index es una ruta relativa a la portada del proyecto. -->
+  <div class="modal fade" id="modal-qr" tabindex="-1" aria-labelledby="titulo-qr" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="titulo-qr">Compartir la web por QR</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formulario-qr" data-qr-index="index.html" novalidate>
+            <label for="url-qr" class="form-label">URL pública de GitHub Pages</label>
+            <input id="url-qr" class="form-control" type="url" inputmode="url" spellcheck="false" maxlength="1024" aria-describedby="ayuda-qr estado-qr" required>
+            <p id="ayuda-qr" class="form-text">Desde una copia local, pega la URL que aparece en Settings → Pages. Admite también el dominio personalizado del sitio.</p>
+            <button type="submit" class="btn btn-primary">Generar QR</button>
+          </form>
+          <p id="estado-qr" role="status" class="small mt-2 mb-0"></p>
+          <figure id="resultado-qr" class="text-center mb-0 mt-3" hidden>
+            <img id="imagen-qr" class="img-fluid" width="288" height="288" alt="Código QR de la web publicada">
+            <figcaption class="mt-2">
+              <a id="destino-qr" class="d-block text-break mb-2"></a>
+              <a id="descarga-qr" class="btn btn-outline-primary" download="taller-web-bda-qr.png">Descargar PNG</a>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
