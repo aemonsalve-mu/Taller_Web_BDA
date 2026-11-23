@@ -1,0 +1,316 @@
+<!-- Etapa 4. HTML describe la estructura. La hoja propia define el diseño y Bootstrap aporta componentes. -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seguimiento del Reto 10 · Edición bilingüe</title>
+  <!-- Orden de carga. Bootstrap define las clases base y la segunda hoja personaliza su aspecto. -->
+  <link rel="stylesheet" href="../../recursos/bibliotecas/bootstrap-5.3.8.min.css">
+  <link rel="stylesheet" href="../../recursos/estilos/01_ciclo_avanzado.css">
+  <!-- El bundle de Bootstrap gestiona los menús. El script propio cambia el idioma, filtra las fases y resume el formulario. -->
+  <script src="../../recursos/bibliotecas/bootstrap-5.3.8.bundle.min.js" defer></script>
+  <script src="../../recursos/scripts/01_ciclo_avanzado.js" defer></script>
+  <script src="../../recursos/bibliotecas/qrcodejs-1.0.0.min.js" defer></script>
+  <script src="../../recursos/scripts/compartir_qr.js" defer></script>
+</head>
+<body>
+  <!-- Atajo de teclado. El enlace se hace visible al recibir el foco y salta al contenido principal. -->
+  <a class="visually-hidden-focusable salto" href="#contenido" data-i18n="skip">Saltar al contenido</a>
+  <header class="barra">
+    <!-- navbar-expand-lg mantiene visible la navegación desde lg. En anchos menores se abre con el botón. -->
+    <nav class="navbar navbar-expand-lg container" aria-label="Navegación principal" data-i18n-aria="mainNav">
+      <a class="navbar-brand marca" href="#contenido" data-i18n="brand">Reto 10 · BDA</a>
+      <!-- data-lang identifica el idioma de cada botón. aria-pressed indica cuál está seleccionado. -->
+      <div class="idiomas order-lg-2" role="group" aria-label="Idioma" data-i18n-aria="languages">
+        <button type="button" data-lang="es" lang="es" aria-label="Español" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+      </div>
+      <!-- data-bs-target enlaza este control con #menu-ciclo. Bootstrap actualiza aria-expanded al abrir y cerrar. -->
+      <button class="navbar-toggler order-lg-3" type="button" data-bs-toggle="collapse" data-bs-target="#menu-ciclo"
+        aria-controls="menu-ciclo" aria-expanded="false" aria-label="Mostrar navegación" data-i18n-aria="toggleNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse order-lg-1" id="menu-ciclo">
+        <ul class="navbar-nav ms-auto me-lg-3">
+          <li class="nav-item"><a class="nav-link" data-i18n="phases" href="#fases">Fases</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="indicators" href="#indicadores">Indicadores</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="review" href="#revision">Revisión</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="uxNav" href="../casos/03_protoqsar.html" hreflang="es">UX de ProtoQSAR</a></li>
+          <!-- Este desplegable es un componente distinto del menú móvil. Las opciones enlazan archivos HTML del ciclo. -->
+          <li class="nav-item dropdown">
+            <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="versions">Versiones</button>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+              <li><a class="dropdown-item" href="01_ciclo_1_html.html" hreflang="es">1. HTML5</a></li>
+              <li><a class="dropdown-item" href="01_ciclo_2_css.html" hreflang="es">2. HTML5 + CSS3</a></li>
+              <li><a class="dropdown-item" href="01_ciclo_3_bootstrap.html" hreflang="es">3. HTML5 + CSS3 + Bootstrap</a></li>
+              <li><a class="dropdown-item active" href="01_ciclo_4_avanzado.html" aria-current="page" data-i18n="stage4">4. Edición bilingüe</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="../../index.html" hreflang="es" data-i18n="lab">Laboratorio web</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <!-- El banner agrupa el h1, dos enlaces internos y una imagen decorativa. El CSS define su distribución. -->
+    <section class="banner" aria-labelledby="titulo">
+      <div class="container banner-grid">
+        <div class="banner-texto">
+          <h1 id="titulo" data-i18n="heroTitle">Seguimiento del Reto 10</h1>
+          <p data-i18n="heroBody">Consulta el avance de la aplicación de aula y prepara la próxima revisión del equipo.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#revision" class="btn btn-banner" data-i18n="heroReview">Preparar revisión</a>
+            <a href="#tecnologias" class="btn btn-banner-alt" data-i18n="heroStack">Explorar las tecnologías</a>
+            <!-- Este enlace relativo abre la página independiente del grafo, cuyo contenido está en español. -->
+            <a href="../grafos/02_grafo.html" hreflang="es" class="btn btn-banner-alt" data-i18n="graphLink">Abrir el grafo de aula</a>
+            <a href="../casos/03_protoqsar.html" hreflang="es" class="btn btn-ux-stage" data-i18n="uxLink">Fase final · UX de ProtoQSAR</a>
+            <button class="btn btn-banner-alt" type="button" data-bs-toggle="modal" data-bs-target="#modal-qr" data-i18n="qrShare">Compartir por QR</button>
+          </div>
+        </div>
+        <!-- Bootstrap alterna los elementos carousel-item. active indica la imagen que se ve al cargar. -->
+        <div id="banner-carrusel" class="carousel slide carousel-fade banner-carrusel" data-bs-interval="6000"
+          role="region" aria-label="Imágenes del banner" data-i18n-aria="bannerSlides">
+          <div id="banner-diapositivas" class="carousel-inner banner-diapositivas">
+            <div class="carousel-item active" role="group" aria-label="Imagen 1 de 2" data-i18n-aria="slideOne">
+              <!-- Las fotos son decorativas. Su pie presenta el tema en el idioma elegido. -->
+              <img class="banner-foto" src="../../recursos/imagenes/desarrollo-web-banner.webp" width="1672" height="941" alt="" fetchpriority="high">
+              <p class="banner-pie mb-0" data-i18n="slideWeb">Desarrollo web</p>
+            </div>
+            <div class="carousel-item" role="group" aria-label="Imagen 2 de 2" data-i18n-aria="slideTwo">
+              <img class="banner-foto" src="../../recursos/imagenes/visualizacion-banner.webp" width="1672" height="941" alt="">
+              <p class="banner-pie mb-0" data-i18n="slideGraph">Visualización de grafos</p>
+            </div>
+          </div>
+          <!-- Bootstrap recibe las flechas mediante data-bs-slide. JavaScript propio controla la reproducción. -->
+          <div class="banner-controles">
+            <button id="banner-reproduccion" type="button" aria-controls="banner-diapositivas">Pausar</button>
+            <button type="button" data-bs-target="#banner-carrusel" data-bs-slide="prev"
+              aria-label="Imagen anterior" data-i18n-aria="slidePrevious"><span aria-hidden="true">‹</span></button>
+            <button type="button" data-bs-target="#banner-carrusel" data-bs-slide="next"
+              aria-label="Imagen siguiente" data-i18n-aria="slideNext"><span aria-hidden="true">›</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container contenido">
+      <section class="progreso mb-5" aria-labelledby="avance-titulo">
+        <div>
+          <h2 id="avance-titulo" data-i18n="progress">Avance de aula</h2>
+          <p class="mb-0" data-i18n="progressText">Dos de las tres tareas de la muestra han superado la primera revisión.</p>
+        </div>
+        <!-- Control nativo de HTML. El nombre accesible procede del encabezado indicado. -->
+        <progress aria-labelledby="avance-titulo" max="3" value="2">2 / 3</progress>
+      </section>
+
+      <section id="fases" class="seccion" aria-labelledby="fases-titulo">
+        <div class="encabezado-seccion">
+          <div>
+            <h2 id="fases-titulo" data-i18n="phaseTitle">Fases del trabajo</h2>
+            <p class="mb-0" data-i18n="phaseBody">Revisa los datos, interpreta el grafo y prepara la entrega.</p>
+          </div>
+          <!-- data-filter identifica la opción elegida. JavaScript busca tarjetas con un data-phase compatible. -->
+          <div class="filtros" role="group" aria-label="Filtrar fases" data-i18n-aria="filterGroup">
+            <button class="filtro" type="button" data-filter="all" aria-pressed="true" data-i18n="all">Todas</button>
+            <button class="filtro" type="button" data-filter="done" aria-pressed="false" data-i18n="donePlural">Revisadas</button>
+            <button class="filtro" type="button" data-filter="pending" aria-pressed="false" data-i18n="pendingPlural">Pendientes</button>
+          </div>
+        </div>
+        <!-- El recuento del filtro se anuncia mediante role=status. visually-hidden lo oculta solo visualmente. -->
+        <p id="resultado-filtro" class="visually-hidden" role="status"></p>
+        <div class="row g-3">
+          <!-- Bootstrap reparte doce columnas por fila. Estas clases muestran una, dos o tres tarjetas según el ancho. -->
+          <div class="col-12 col-md-6 col-lg-4" data-phase="done">
+            <article class="card h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+                  <img class="tarjeta-icono" src="../../recursos/bibliotecas/check2-square.svg" width="23" height="23" alt="">
+                  <span class="badge revised" data-i18n="done">Revisado</span>
+                </div>
+                <h3 class="card-title" data-i18n="dataTitle">Preparación de datos</h3>
+                <p data-i18n="dataBody">Identifica las fuentes y comprueba qué representa cada enlace.</p>
+                <ul class="lista">
+                  <li data-i18n="ids">Identificadores únicos</li>
+                  <!-- La lista interior pertenece a este li. Se traduce el span para conservar los elementos anidados. -->
+                  <li><span data-i18n="evidence">Tipos de evidencia</span>
+                    <ul><li data-i18n="source">Fuente</li><li data-i18n="reviewDate">Fecha de revisión</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4" data-phase="done">
+            <article class="card h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+                  <img class="tarjeta-icono" src="../../recursos/bibliotecas/diagram-3.svg" width="23" height="23" alt="">
+                  <span class="badge revised" data-i18n="done">Revisado</span>
+                </div>
+                <h3 class="card-title" data-i18n="graphTitle">Exploración del grafo</h3>
+                <p data-i18n="graphBody">Interpreta nodos y aristas en la muestra del proyecto.</p>
+                <ol class="lista">
+                  <li data-i18n="stepNode">Selecciona un nodo.</li>
+                  <li data-i18n="stepNeighbors">Consulta sus vecinos.</li>
+                  <li data-i18n="stepLimit">Anota una limitación.</li>
+                </ol>
+                <a href="../grafos/02_grafo.html" hreflang="es" data-i18n="graphLink">Abrir el grafo de aula</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4" data-phase="pending">
+            <article class="card h-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+                  <img class="tarjeta-icono" src="../../recursos/bibliotecas/journal-text.svg" width="23" height="23" alt="">
+                  <span class="badge pending" data-i18n="pending">Pendiente</span>
+                </div>
+                <h3 class="card-title" data-i18n="deliveryTitle">Entrega y comunicación</h3>
+                <p data-i18n="deliveryBody">Prepara la demostración y explica la procedencia de los datos.</p>
+                <dl class="mb-0">
+                  <dt data-i18n="deliverable">Entregable</dt><dd data-i18n="prototype">Prototipo responsive.</dd>
+                  <dt data-i18n="proof">Evidencia</dt><dd class="mb-0" data-i18n="proofSizes">Dos tamaños de pantalla comprobados.</dd>
+                </dl>
+              </div>
+            </article>
+          </div>
+        </div>
+        <aside class="nota mt-3" aria-labelledby="nota-titulo">
+          <h3 id="nota-titulo" data-i18n="scope">Nota de alcance</h3>
+          <p class="mb-0"><span data-i18n="scopeBody">La página usa datos sintéticos de aula.</span> <strong data-i18n="scopeCheck">Comprueba la fuente antes de interpretar.</strong></p>
+        </aside>
+      </section>
+
+      <div class="row g-4 seccion">
+        <section id="indicadores" class="col-12 col-lg-7" aria-labelledby="indicadores-titulo">
+          <h2 id="indicadores-titulo" data-i18n="indicatorsTitle">Indicadores del ejemplo</h2>
+          <div class="table-responsive">
+            <!-- table y table-striped aportan el formato. Los encabezados conservan su relación con las celdas mediante scope. -->
+            <table class="table table-striped align-middle mb-2">
+              <caption data-i18n="caption">Indicadores de la demostración del laboratorio.</caption>
+              <thead><tr><th scope="col" data-i18n="metric">Indicador</th><th scope="col" data-i18n="value">Valor</th><th scope="col" data-i18n="reading">Lectura</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" data-i18n="reviewedTasks">Tareas revisadas</th><td data-i18n="twoOfThree">2 de 3</td><td data-i18n="onePending">Una espera revisión.</td></tr>
+                <tr><th scope="row" data-i18n="graphViews">Vistas del grafo</th><td>3</td><td>D3, Plotly.js, NVD3</td></tr>
+                <tr><th scope="row" data-i18n="checkedWidths">Anchos de comprobación</th><td>3</td><td data-i18n="pixels">390, 768 y 1200 píxeles</td></tr>
+              </tbody>
+            </table>
+          </div>
+        <!-- Bootstrap agrupa los paneles. data-bs-parent cierra el panel anterior al abrir otro. -->
+        <div class="accordion mt-3" id="indicadores-acordeon-4">
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#origen-4" aria-expanded="false" aria-controls="origen-4" data-i18n="howDefined">Cómo se han definido estos valores</button>
+            </h3>
+            <div id="origen-4" class="accordion-collapse collapse" data-bs-parent="#indicadores-acordeon-4">
+              <div class="accordion-body"><p data-i18n="howDefinedBody">Los valores describen la demostración. Documenta el origen de cada indicador y la fecha de comprobación.</p></div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#interpretacion-4" aria-expanded="false" aria-controls="interpretacion-4" data-i18n="interpretation">Qué puedes interpretar</button>
+            </h3>
+            <div id="interpretacion-4" class="accordion-collapse collapse" data-bs-parent="#indicadores-acordeon-4">
+              <div class="accordion-body"><p data-i18n="interpretationBody">Los indicadores describen un ejemplo de aula. Para valorar un cambio en la web, observa si los usuarios completan una tarea concreta.</p></div>
+            </div>
+          </div>
+        </div>
+        </section>
+        <section id="revision" class="col-12 col-lg-5" aria-labelledby="revision-titulo">
+          <h2 id="revision-titulo" data-i18n="reviewTitle">Preparar la revisión</h2>
+          <!-- El navegador valida required. El script escucha submit y muestra el resumen en la propia página. -->
+          <form id="formulario-revision" class="formulario" action="#revision" method="get">
+            <label class="form-label" for="apartado" data-i18n="topic">Apartado</label>
+            <select id="apartado" name="apartado" class="form-select mb-3" required>
+              <option value="" data-i18n="chooseTopic">Elige un apartado</option>
+              <option value="dataTitle" data-i18n="dataTitle">Preparación de datos</option>
+              <option value="graphTitle" data-i18n="graphTitle">Exploración del grafo</option>
+              <option value="deliveryTitle" data-i18n="deliveryTitle">Entrega y comunicación</option>
+            </select>
+            <div class="form-check mb-3">
+              <input id="movil" name="movil" type="checkbox" value="si" class="form-check-input">
+              <label for="movil" class="form-check-label" data-i18n="mobileCheck">Incluir comprobación en móvil</label>
+            </div>
+            <button type="submit" class="btn btn-review" data-i18n="submit">Preparar selección</button>
+            <!-- El resumen está oculto al inicio. role=status permite anunciar el resultado al actualizarlo. -->
+            <p id="resumen-revision" role="status" class="feedback mb-0" hidden></p>
+          </form>
+        <!-- Este Collapse se abre por separado. Su botón apunta al id y no usa data-bs-parent. -->
+        <div class="mt-3">
+          <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#criterios-4"
+            aria-expanded="false" aria-controls="criterios-4" data-i18n="reviewChecklist">Ver criterios de revisión</button>
+          <div id="criterios-4" class="collapse mt-2">
+            <ul class="list-group">
+              <li class="list-group-item" data-i18n="reviewWidth">Comprueba 390 y 1200 px.</li>
+              <li class="list-group-item" data-i18n="reviewKeyboard">Usa Tab para llegar a los controles.</li>
+              <li class="list-group-item" data-i18n="reviewEvidence">Guarda una evidencia y explica qué cambió.</li>
+            </ul>
+          </div>
+        </div>
+        </section>
+      </div>
+
+      <!-- Las cuatro fichas relacionan lo que ves en pantalla con la tecnología que aporta cada función. -->
+      <section id="tecnologias" class="seccion" aria-labelledby="tecnologias-titulo">
+        <h2 id="tecnologias-titulo" data-i18n="stackTitle">Qué aporta cada tecnología</h2>
+        <div class="row g-3">
+          <div class="col-12 col-sm-6 col-xl-3"><article class="tecnologia tech-html h-100">
+            <img src="../../recursos/bibliotecas/filetype-html.svg" width="29" height="29" alt="">
+            <h3>HTML5</h3><p data-i18n="stackHtml">Define la estructura: encabezados, secciones, listas, tabla y formulario.</p>
+          </article></div>
+          <div class="col-12 col-sm-6 col-xl-3"><article class="tecnologia tech-css h-100">
+            <img src="../../recursos/bibliotecas/filetype-css.svg" width="29" height="29" alt="">
+            <h3>CSS3</h3><p data-i18n="stackCss">Da forma al banner, ajusta el recorte de la imagen y adapta la composición al ancho.</p>
+          </article></div>
+          <div class="col-12 col-sm-6 col-xl-3"><article class="tecnologia tech-bs h-100">
+            <img src="../../recursos/bibliotecas/bootstrap-fill.svg" width="29" height="29" alt="">
+            <h3>Bootstrap</h3><p data-i18n="stackBs">Proporciona las columnas, tarjetas, controles y menús interactivos.</p>
+            <a href="https://getbootstrap.com/docs/5.3/components/dropdowns/" data-i18n="bsDocs">Documentación del menú</a>
+          </article></div>
+          <div class="col-12 col-sm-6 col-xl-3"><article class="tecnologia tech-js h-100">
+            <img src="../../recursos/bibliotecas/filetype-js.svg" width="29" height="29" alt="">
+            <h3>JavaScript</h3><p data-i18n="stackJs">Cambia el idioma, filtra tarjetas y prepara un resumen del formulario.</p>
+          </article></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="pie">
+    <div class="container d-flex flex-wrap justify-content-between gap-2">
+      <small data-i18n="footer">Demostración de aula · Business Data Analytics</small>
+      <small><a href="../../documentacion/Guia_Ciclo_Web.md" hreflang="es" data-i18n="guide">Guía del ciclo</a> · <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></small>
+    </div>
+  </footer>
+  <!-- El modal usa Bootstrap. data-qr-index es una ruta relativa a la portada del proyecto. -->
+  <div class="modal fade" id="modal-qr" tabindex="-1" aria-labelledby="titulo-qr" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="titulo-qr" data-i18n="qrTitle">Compartir la web por QR</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" data-i18n-aria="qrClose"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formulario-qr" data-qr-index="../../index.html" novalidate>
+            <label for="url-qr" class="form-label" data-i18n="qrLabel">URL pública de GitHub Pages</label>
+            <input id="url-qr" class="form-control" type="url" inputmode="url" spellcheck="false" maxlength="1024" aria-describedby="ayuda-qr estado-qr" required>
+            <p id="ayuda-qr" class="form-text" data-i18n="qrHelp">Desde una copia local, pega la URL que aparece en Settings → Pages. Admite también el dominio personalizado del sitio.</p>
+            <button type="submit" class="btn btn-primary" data-i18n="qrGenerate">Generar QR</button>
+          </form>
+          <p id="estado-qr" role="status" class="small mt-2 mb-0"></p>
+          <figure id="resultado-qr" class="text-center mb-0 mt-3" hidden>
+            <img id="imagen-qr" class="img-fluid" width="288" height="288" alt="Código QR de la web publicada" data-i18n-alt="qrImage">
+            <figcaption class="mt-2">
+              <a id="destino-qr" class="d-block text-break mb-2"></a>
+              <a id="descarga-qr" class="btn btn-outline-primary" download="taller-web-bda-qr.png" data-i18n="qrDownload">Descargar PNG</a>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

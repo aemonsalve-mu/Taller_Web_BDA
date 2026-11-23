@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DOM y catálogo de indicadores</title>
+  <link rel="stylesheet" href="../../recursos/bibliotecas/bootstrap-5.3.8.min.css">
+  <link rel="stylesheet" href="../../recursos/estilos/estilos.css">
+  <!-- defer permite asociar eventos después de que el navegador haya construido el DOM. -->
+  <script src="../../recursos/scripts/01_dom.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar-local">
+      <span class="brand">Panel comercial</span>
+      <nav aria-label="Prácticas">
+        <a href="../../index.html">Laboratorio web</a><a href="../grafos/02_grafo.html">Grafo</a><a href="../casos/03_protoqsar.html">ProtoQSAR</a>
+      </nav>
+    </div>
+  </header>
+  <!-- Los controles y las tarjetas pertenecen a la práctica principal de filtrado. -->
+  <main class="container section">
+    <h1>Indicadores comerciales</h1>
+    <p>Filtra las tarjetas para preparar una revisión por área.</p>
+    <label for="area">Área</label>
+    <select id="area">
+      <option value="todas">Todas</option>
+      <option value="captacion">Captación</option>
+      <option value="retencion">Retención</option>
+    </select>
+    <p id="resumen" class="status" role="status">3 indicadores visibles.</p>
+    <!-- row agrupa las tarjetas. El script identifica cada categoría mediante data-area. -->
+    <section class="row" aria-label="Indicadores">
+      <article class="col-12 col-md-6 col-lg-4" data-area="captacion">
+        <div class="panel"><h2>48 oportunidades</h2><p>Nuevas oportunidades del trimestre.</p></div>
+      </article>
+      <article class="col-12 col-md-6 col-lg-4" data-area="captacion">
+        <div class="panel"><h2>12 % de conversión</h2><p>Proporción de oportunidades que terminan en venta.</p></div>
+      </article>
+      <article class="col-12 col-md-6 col-lg-4" data-area="retencion">
+        <div class="panel"><h2>84 % de renovación</h2><p>Proporción de contratos elegibles renovados.</p></div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

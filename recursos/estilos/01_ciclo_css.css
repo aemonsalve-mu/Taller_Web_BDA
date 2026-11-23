@@ -1,0 +1,104 @@
+/* Etapa 2. La cuadrícula, el aspecto y las interacciones visuales son CSS propio. */
+/* Paleta compartida. var reutiliza estas propiedades en fondo, texto, bordes y botones. */
+:root {
+  --tinta: #1e2f46;
+  --acento: #0b655b;
+  --fondo: #eff5f7;
+  --linea: #c2d1db;
+}
+/* border-box incluye relleno y borde dentro del ancho declarado. */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--tinta);
+  background: var(--fondo);
+  font: 1rem/1.6 system-ui, sans-serif;
+}
+a { color: var(--acento); text-underline-offset: .15em; }
+:focus-visible { outline: 3px solid #1a60c1; outline-offset: 2px; }
+.salto { position: absolute; inset: 0 auto auto 1rem; transform: translateY(-150%); }
+.salto:focus { transform: none; padding: .25rem .75rem; background: white; }
+/* min elige el menor entre el ancho disponible menos los márgenes laterales y el máximo del contenido. */
+.envoltura { width: min(100% - 2rem, 70rem); margin-inline: auto; }
+.cabecera, .pie { background: white; border-block: 1px solid var(--linea); padding-block: .8rem; }
+.marca, .pie-texto { margin: 0; }
+.marca { font-weight: 700; }
+/* Flexbox alinea los enlaces y flex-wrap permite que salten de fila en pantallas estrechas. */
+.etapas, .indice-enlaces, .acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+  padding: 0;
+  list-style: none;
+}
+.etapas { margin-block: .5rem 0; }
+.etapas a[aria-current="page"] { font-weight: 750; text-decoration-thickness: 2px; }
+.apertura { display: grid; gap: 1rem; align-items: center; padding-block: 2rem 1rem; }
+h1, h2, h3 { line-height: 1.2; }
+h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin: 0 0 .6rem; }
+h2 { font-size: clamp(1.45rem, 4vw, 2rem); }
+h3 { font-size: 1.18rem; }
+.introduccion { font-size: 1.12rem; max-width: 52ch; }
+.accion {
+  display: inline-block;
+  padding: .55rem .8rem;
+  border: 1px solid var(--acento);
+  border-radius: .35rem;
+  color: white;
+  background: var(--acento);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+.accion.secundaria { color: var(--acento); background: white; }
+.resumen { margin: 0; }
+.resumen-caja, .nota {
+  padding: 1rem;
+  border: 1px solid var(--linea);
+  border-radius: .55rem;
+  background: #e3eeed;
+}
+progress { display: block; width: 100%; margin-block: .5rem; accent-color: var(--acento); }
+.indice { border-bottom: 1px solid var(--linea); }
+.seccion { margin-block: 2rem; }
+
+/* Un bloque de tres artículos. El ancho define cuántos caben en cada fila. */
+.tarjetas { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+/* Las reglas se añaden al alcanzar cada ancho mínimo. A 768 px hay dos columnas y a 992 px hay tres. */
+@media (min-width: 768px) {
+  .tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 992px) {
+  .apertura { grid-template-columns: 2fr 1fr; }
+  .tarjetas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.ficha { height: 100%; border: 1px solid var(--linea); border-radius: .55rem; background: white; }
+.ficha-cuerpo { padding: 1rem; }
+.ficha-cuerpo > h3 { margin-top: 0; }   /* Hijo directo de .ficha-cuerpo. */
+.lista-ficha li { margin-bottom: .2rem; }   /* Incluye los li de una lista anidada. */
+.lista-ficha { padding-inline-start: 1.2rem; }
+dl.lista-ficha { padding: 0; }
+.lista-ficha dd { margin: 0 0 .45rem; }
+.estado { display: inline-block; margin: 0; padding: .1rem .5rem; background: #d5ede2; border-radius: .25rem; }
+.estado.pendiente { background: #f5e5bf; }
+
+/* El párrafo hereda color y familia; su caja conserva su propio padding y borde. */
+.nota { margin-top: 1.1rem; border-left: 4px solid var(--acento); color: #36546b; }
+.nota > h3, .nota > p { margin-block: 0 .4rem; }
+/* Este descendiente recibe un color explícito que sustituye al color heredado de la nota. */
+.nota .excepcion { color: #7b361a; }
+
+/* Si la tabla rebasa su contenedor, solo ese bloque admite el desplazamiento horizontal. */
+.tabla-contenedor { overflow-x: auto; }
+.tabla { width: 100%; border-collapse: collapse; background: white; }
+.tabla th, .tabla td { padding: .5rem .7rem; border-bottom: 1px solid var(--linea); text-align: left; }
+.tabla caption { text-align: left; padding-block: .4rem; }
+.detalle { margin-top: .8rem; }
+summary { cursor: pointer; }
+/* fieldset y legend agrupan controles relacionados. Estas reglas dan forma a ese grupo. */
+fieldset { margin: 0; padding: .8rem 1rem 1rem; border: 1px solid var(--linea); }
+legend { font-weight: 700; }
+.campo { display: grid; gap: .25rem; max-width: 30rem; }
+.control { width: 100%; padding: .45rem; font: inherit; }
+.opcion { margin-block: .75rem; }
+

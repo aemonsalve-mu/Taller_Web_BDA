@@ -1,0 +1,37 @@
+/* Estilos generales del laboratorio. El texto hereda la familia tipográfica y el color del cuerpo. */
+body { color:#162742; background:#eff5f7; font-family:system-ui,sans-serif; }
+a { color:#0b655b; text-underline-offset:.18em; }
+:focus-visible { outline:3px solid #235ec4; outline-offset:3px; }
+.masthead { border-bottom:1px solid #c7d5df; background:#fff; }
+.lab-brand { color:#162742; font-weight:750; }
+h1 { max-width:20ch; letter-spacing:-.04em; font-size:clamp(2.1rem,5vw,3.7rem); }
+/* El menú puede saltar de fila. En pantallas anchas pasa a ser un índice vertical que se mantiene visible al desplazarse. */
+.lab-nav { display:flex; flex-wrap:wrap; justify-content:flex-start; gap:8px 16px; }
+@media (min-width:992px) {
+  .lab-nav { position:sticky; top:20px; display:grid; border-left:2px solid #9fcbbc; padding-left:16px; }
+}
+.lesson { margin-bottom:24px; padding:clamp(16px,4vw,30px); border:1px solid #c7d5df; border-radius:14px; background:white; }
+.lesson h3 { margin:24px 0 10px; font-size:1.35rem; }
+.lesson .accordion-header { margin:0; }
+/* El ancho mínimo mantiene legibles las columnas. El contenedor de Bootstrap admite desplazamiento horizontal. */
+.lesson table { min-width:29rem; }
+.sample-card, .marco { padding:16px; border:2px solid #aac5c3; border-radius:9px; background:#f5fbf9; }
+.sample-card ul { margin-bottom:0; }
+/* El JavaScript añade esta clase al elemento seleccionado para marcarlo con un contorno. */
+.sample-card .nodo-inspeccionado, .sample-card.nodo-inspeccionado {
+  outline:2px dashed #235ec4; outline-offset:2px;
+}
+pre { padding:12px; background:#182941; color:#f6fbff; border-radius:8px; white-space:pre; }
+.output { margin-top:12px; white-space:pre-wrap; background:#e7eff5; color:#162742; }
+/* Demostración de cascada. El párrafo hereda el color del marco y su estado puede cambiar mediante una clase. */
+.marco { color:#155e4a; }
+.marco p { margin:0; }
+.estado-color { color:#6940a5; }
+/* La regla de dos clases tiene más especificidad que .estado-color. */
+.marco .estado-color { color:#a13a18; }
+.marco.padre-alternativo { color:#1f5091; }
+/* El valor inherit hace que el span tome el color de su padre. */
+.marco.forzar-herencia .estado-color { color:inherit; }
+details { border-top:1px solid #c7d5df; padding-top:12px; }
+details summary { font-weight:650; cursor:pointer; }
+details > :nth-child(2) { margin-top:12px; }

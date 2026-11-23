@@ -1,0 +1,139 @@
+/* La cuadrícula y los componentes vienen de Bootstrap. Esta hoja define el diseño del panel. */
+/* Variables reutilizables. Las que empiezan por --bs ajustan Bootstrap y las demás pertenecen al tema local. */
+:root {
+  --bs-body-bg: #f7f8fb;
+  --bs-body-color: #19313b;
+  --bs-link-color-rgb: 12, 99, 87;
+  --bs-link-hover-color-rgb: 5, 66, 58;
+  --bs-border-color: #d2dae3;
+  --tinta: #122c33;
+  --verde: #0c6357;
+  --verde-claro: #c5eadd;
+}
+body { font-family: system-ui, sans-serif; }
+/* El contorno indica qué control ha recibido el foco durante la navegación con teclado. */
+:focus-visible { outline: 3px solid #2962c7; outline-offset: 3px; }
+.salto:focus { position: fixed; left: 1rem; top: 1rem; z-index: 1100; padding: .55rem .8rem; background: white; }
+/* La hoja propia personaliza la barra. Bootstrap gestiona el comportamiento de sus componentes. */
+.barra { background: #fcfefd; border-bottom: 1px solid var(--bs-border-color); }
+.barra .navbar { gap: .65rem; min-height: 4rem; }
+.marca { margin-inline-end: auto; color: var(--tinta); font-weight: 850; letter-spacing: -.045em; }
+.barra .nav-link { font-weight: 600; }
+.barra .dropdown-menu { --bs-dropdown-link-active-bg: #0c6357; }
+.idiomas { display: inline-flex; gap: .2rem; padding: .2rem; border: 1px solid var(--bs-border-color); border-radius: 2rem; }
+.idiomas button, .filtro {
+  color: var(--tinta); background: transparent; border: 1px solid transparent; border-radius: 2rem;
+  padding: .28rem .62rem; font-weight: 680;
+}
+/* El selector de atributo usa el estado que actualiza JavaScript para distinguir el botón activo. */
+.idiomas button[aria-pressed="true"], .filtro[aria-pressed="true"] {
+  color: #fff; background: var(--verde);
+}
+.banner { overflow: hidden; background: linear-gradient(120deg, #eaf5f0, #f1ebfb 80%); color: #17333e; }
+/* Grid organiza el banner. En móvil se apilan sus elementos y la consulta final crea dos columnas. */
+.banner-grid { display: grid; align-items: stretch; }
+.banner-texto { position: relative; padding-block: clamp(2.1rem, 6vw, 5.5rem) 2rem; z-index: 1; }
+/* clamp fija el mínimo, el valor fluido y el máximo del tamaño del texto. */
+.banner h1 { font-size: clamp(2.55rem, 6vw, 5.75rem); line-height: .97; font-weight: 820; letter-spacing: -.062em; }
+.banner p { max-width: 43ch; margin-block: 1.1rem 1.35rem; color: #344e5a; font-size: clamp(1.02rem, 1.8vw, 1.24rem); }
+/* object-fit cubre la caja sin deformar la imagen. object-position elige qué zona prioriza el recorte. */
+.banner-foto {
+  width: 100%; height: 100%; object-fit: cover; object-position: 58% 53%; display: block;
+}
+/* Todas las diapositivas ocupan la misma caja. Así el contenido inferior mantiene su posición. */
+.banner-carrusel {
+  min-width: 0; height: clamp(205px, 54vw, 350px); overflow: hidden; border-radius: 1rem 1rem 0 0;
+}
+.banner-diapositivas, .banner-carrusel .carousel-item { height: 100%; }
+.banner .banner-pie {
+  position: absolute; inset: auto 0 0; max-width: none; margin: 0;
+  padding: 1.45rem .75rem 3.45rem; color: white; font-size: .92rem; font-weight: 700;
+  background: linear-gradient(transparent, rgb(8 21 28 / .9) 58%);
+}
+.banner-controles {
+  position: absolute; inset: auto auto .58rem .75rem; z-index: 2;
+  display: flex; gap: .35rem;
+}
+.banner-controles button {
+  min-width: 2.35rem; min-height: 2.1rem; padding: .16rem .45rem; color: white;
+  background: #122631; border: 1px solid #aac6cc; border-radius: .42rem; font-size: .9rem;
+}
+.banner-controles button:hover, .banner-controles button:focus-visible {
+  background: #effaf8; color: #122631;
+}
+/* Las variables locales de cada variante ajustan los colores de los botones de Bootstrap. */
+.btn-banner, .btn-banner-alt, .btn-review, .btn-ux-stage { padding: .58rem .9rem; font-weight: 720; }
+.btn-banner {
+  --bs-btn-color: #102d2a; --bs-btn-bg: var(--verde-claro); --bs-btn-border-color: var(--verde-claro);
+  --bs-btn-hover-color: #102d2a; --bs-btn-hover-bg: #cbf5e7; --bs-btn-hover-border-color: #cbf5e7;
+  --bs-btn-active-color: #102d2a; --bs-btn-active-bg: #cbf5e7;
+}
+.btn-banner-alt {
+  --bs-btn-color: #203943; --bs-btn-border-color: #7b969a; --bs-btn-bg: #fafffd;
+  --bs-btn-hover-color: #102d2a; --bs-btn-hover-bg: #dff2ec; --bs-btn-hover-border-color: #7b969a;
+  --bs-btn-active-color: #102d2a; --bs-btn-active-bg: #dff2ec;
+}
+.btn-ux-stage {
+  --bs-btn-color: #432b65; --bs-btn-bg: #e8dffa; --bs-btn-border-color: #b49ccf;
+  --bs-btn-hover-color: #352351; --bs-btn-hover-bg: #ded0f6; --bs-btn-hover-border-color: #947bab;
+}
+.btn-review {
+  --bs-btn-color: #fff; --bs-btn-bg: #0c6357; --bs-btn-border-color: #0c6357;
+  --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #07493f; --bs-btn-hover-border-color: #07493f;
+  --bs-btn-active-color: #fff; --bs-btn-active-bg: #07493f;
+}
+.contenido { padding-block: 1.6rem 3rem; }
+/* Selector agrupado. Los cuatro tipos de bloque comparten superficie, borde y radio. */
+.progreso, .card, .formulario, .tecnologia {
+  border: 1px solid var(--bs-border-color); border-radius: 1rem; background: #fcfefd;
+}
+.progreso { display: grid; gap: .65rem 1.8rem; align-items: center; padding: 1rem 1.2rem; background: #ecf6f3; }
+.progreso h2 { font-size: 1.17rem; }
+.progreso progress { width: 100%; height: 1.05rem; accent-color: var(--verde); }
+.seccion + .seccion { margin-top: 3rem; }
+.seccion h2 { font-weight: 810; font-size: clamp(1.55rem, 3vw, 2.35rem); letter-spacing: -.036em; }
+.encabezado-seccion { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: .8rem; margin-bottom: 1rem; }
+.filtros { display: flex; flex-wrap: wrap; gap: .3rem; }
+.filtro { border-color: var(--bs-border-color); background: #fff; font-size: .91rem; }
+.card { box-shadow: 0 4px 12px rgb(18 44 51 / .045); }
+[data-phase]:nth-child(1) .card { border-top: 3px solid #b3ddcf; }
+[data-phase]:nth-child(2) .card { border-top: 3px solid #cdbee9; }
+[data-phase]:nth-child(3) .card { border-top: 3px solid #edd0a6; }
+.card-body, .formulario, .tecnologia { padding: 1.2rem; }
+.card h3, .tecnologia h3 { font-size: 1.22rem; font-weight: 760; }
+.revised { color: #065547; background: #d8f1e7; }
+.pending { color: #704400; background: #faeccd; }
+.lista { padding-inline-start: 1.2rem; }
+.lista ul { margin-block: .15rem .2rem; }
+/* El color definido en la caja se hereda. El relleno y el borde pertenecen solo a la caja. */
+.nota { color: #395860; border-inline-start: 3px solid #54a591; padding: .75rem 1rem; background: #e7f1ee; border-radius: .28rem; }
+.nota h3 { font-size: 1.13rem; }
+.table { --bs-table-bg: #fcfefd; }
+/* El color de un acordeón cambia mediante variables, tanto en reposo como al abrir un panel. */
+.accordion {
+  --bs-accordion-btn-bg: #f7f3fd;
+  --bs-accordion-active-bg: #ebe2f8;
+  --bs-accordion-active-color: #432b65;
+}
+.accordion-body p { margin: 0; }
+.feedback { margin-top: 1rem; padding: .7rem; background: #d8f1e7; color: #065547; border-radius: .45rem; }
+/* Cada ficha proporciona su valor de --tech-color a la regla de borde compartida. */
+.tecnologia { border-top: .24rem solid var(--tech-color); }
+.tecnologia img { margin-bottom: .75rem; }
+.tecnologia p { margin-bottom: .6rem; }
+.tech-html { --tech-color: #b84a31; }
+.tech-css { --tech-color: #2a70ba; }
+.tech-bs { --tech-color: #7044a6; }
+.tech-js { --tech-color: #a27611; }
+.pie { padding-block: 1.2rem; border-top: 1px solid var(--bs-border-color); }
+/* Refuerza el ocultamiento de las tarjetas filtradas aunque otra clase defina su display. */
+[hidden] { display: none !important; }
+/* Desde 768 px cambia el indicador. Desde 992 px, el texto y la imagen del banner quedan lado a lado. */
+@media (min-width: 768px) {
+  .progreso { grid-template-columns: 1.6fr 1fr; }
+}
+@media (min-width: 992px) {
+  .banner-grid { grid-template-columns: 1fr 1.04fr; }
+  .banner-texto { padding-block-end: clamp(2.1rem, 6vw, 5.5rem); }
+  .banner-carrusel { height: 100%; min-height: 420px; border-radius: 0; }
+}

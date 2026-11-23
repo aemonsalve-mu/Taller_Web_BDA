@@ -1,0 +1,164 @@
+<!-- HTML5. El doctype activa el modo estándar. Lee estos comentarios en el código fuente. -->
+<!doctype html>
+<html lang="es">
+<!-- Metadatos. charset conserva las tildes y viewport fija el ancho de referencia en móviles. -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seguimiento del Reto 10 · HTML5 + CSS3</title>
+  <!-- Hoja propia. Los selectores encuentran las clases del HTML y las consultas de ancho distribuyen las columnas. -->
+  <link rel="stylesheet" href="../../recursos/estilos/01_ciclo_css.css">
+</head>
+<body>
+  <a class="salto" href="#contenido">Saltar al contenido</a>
+  <header class="cabecera">
+    <div class="envoltura">
+      <p class="marca"><a href="../../index.html">Laboratorio web</a> · Reto 10</p>
+      <!-- Navegación entre archivos. aria-current identifica la versión abierta. -->
+      <nav aria-label="Versiones del ejemplo">
+        <ul class="etapas">
+        <li><a href="01_ciclo_1_html.html">1. HTML5</a></li>
+        <li><a href="01_ciclo_2_css.html" aria-current="page">2. HTML5 + CSS3</a></li>
+        <li><a href="01_ciclo_3_bootstrap.html">3. HTML5 + CSS3 + Bootstrap</a></li>
+        <li><a href="01_ciclo_4_avanzado.html">4. Edición bilingüe</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- Contenido principal. El enlace «Saltar al contenido» apunta a su id. -->
+  <main id="contenido">
+    <div class="envoltura">
+      <!-- Introducción temática. aria-labelledby obtiene el nombre de la sección a partir del h1 indicado. -->
+      <section class="apertura" aria-labelledby="panel-titulo">
+        <div class="presentacion">
+          <h1 id="panel-titulo" class="titulo-panel">Seguimiento del Reto 10</h1>
+          <p class="introduccion">Consulta el estado de la aplicación de aula y prepara la próxima revisión del equipo.</p>
+          <ul class="acciones">
+            <li><a href="#revision" class="accion">Preparar revisión</a></li>
+            <li><a href="../grafos/02_grafo.html" class="accion secundaria">Abrir el grafo de aula</a></li>
+          </ul>
+        </div>
+        <figure class="resumen">
+          <div class="resumen-caja">
+            <label for="progreso"><strong>Avance de aula</strong></label>
+            <!-- Barra nativa de HTML. value indica el avance y max es el total. -->
+            <progress id="progreso" max="3" value="2">2 de 3</progress>
+            <figcaption>Dos de las tres tareas de la muestra han superado la primera revisión.</figcaption>
+          </div>
+        </figure>
+      </section>
+
+      <!-- Índice interno. Un href que empieza por # apunta al elemento con ese id. -->
+      <nav class="indice" aria-label="Contenido del panel">
+        <div id="indice-panel">
+            <ul class="indice-enlaces">
+              <li><a href="#fases" class="enlace-seccion">Fases</a></li>
+              <li><a href="#indicadores" class="enlace-seccion">Indicadores</a></li>
+              <li><a href="#revision" class="enlace-seccion">Revisión</a></li>
+            </ul>
+          </div>
+      </nav>
+
+      <!-- Cada fase es un article con su h3. Los div de columna agrupan elementos para el diseño. -->
+      <section id="fases" class="seccion" aria-labelledby="fases-titulo">
+        <h2 id="fases-titulo" class="titulo-seccion">Fases del trabajo</h2>
+        <p>Revisa los datos, interpreta el grafo y prepara la entrega.</p>
+        <div class="tarjetas">
+          <div class="columna">
+            <article class="ficha">
+              <div class="ficha-cuerpo">
+                <h3 class="titulo-ficha">Preparación de datos</h3>
+                <p class="estado">Revisado</p>
+                <p>Identifica las fuentes y comprueba qué representa cada enlace.</p>
+                <ul class="lista-ficha">
+                  <li class="tarea">Identificadores únicos</li>
+                  <li class="tarea">Tipos de evidencia
+                    <ul><li>Fuente</li><li>Fecha de revisión</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+          <div class="columna">
+            <article class="ficha">
+              <div class="ficha-cuerpo">
+                <h3 class="titulo-ficha">Exploración del grafo</h3>
+                <p class="estado">Revisado</p>
+                <p>Interpreta nodos y aristas en la muestra del proyecto.</p>
+                <ol class="lista-ficha"><li>Selecciona un nodo.</li><li>Consulta sus vecinos.</li><li>Anota una limitación.</li></ol>
+              </div>
+            </article>
+          </div>
+          <div class="columna">
+            <article class="ficha">
+              <div class="ficha-cuerpo">
+                <h3 class="titulo-ficha">Entrega y comunicación</h3>
+                <p class="estado pendiente">Pendiente</p>
+                <p>Prepara la demostración y explica la procedencia de los datos.</p>
+                <dl class="lista-ficha"><dt>Entregable</dt><dd>Prototipo responsive.</dd><dt>Evidencia</dt><dd>Dos tamaños de pantalla comprobados.</dd></dl>
+              </div>
+            </article>
+          </div>
+        </div>
+        <!-- Nota complementaria. En la etapa CSS, compara el color heredado del párrafo con el del span. -->
+        <aside class="nota" aria-labelledby="nota-titulo">
+          <h3 id="nota-titulo">Nota de alcance</h3>
+          <p id="texto-herencia">La página usa datos <em>sintéticos</em> de aula. <span id="texto-excepcion" class="excepcion"><strong>Comprueba la fuente antes de interpretar.</strong></span></p>
+        </aside>
+      </section>
+
+      <section id="indicadores" class="seccion" aria-labelledby="indicadores-titulo">
+        <h2 id="indicadores-titulo" class="titulo-seccion">Indicadores del ejemplo</h2>
+        <div class="tabla-contenedor">
+          <!-- caption describe la tabla y scope vincula cada encabezado con su fila o columna. -->
+          <table class="tabla">
+            <caption>Indicadores de la demostración del laboratorio.</caption>
+            <thead><tr><th scope="col">Indicador</th><th scope="col">Valor</th><th scope="col">Lectura</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Tareas revisadas</th><td>2 de 3</td><td>Una espera revisión.</td></tr>
+              <tr><th scope="row">Vistas del grafo</th><td>3</td><td>D3, Plotly.js y NVD3.</td></tr>
+              <tr><th scope="row">Anchos de comprobación</th><td>3</td><td>390, 768 y 1200 píxeles.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- summary abre y cierra los detalles de forma nativa. -->
+        <details class="detalle">
+          <summary>Cómo se han definido estos valores</summary>
+          <p>Los valores describen esta demostración. En una entrega, documenta el origen de cada indicador y la fecha de comprobación.</p>
+        </details>
+      </section>
+
+      <section id="revision" class="seccion" aria-labelledby="revision-titulo">
+        <h2 id="revision-titulo" class="titulo-seccion">Preparar la revisión</h2>
+        <p>Selecciona el apartado que vas a revisar. El ejemplo muestra la selección en la URL mediante un formulario local.</p>
+        <!-- required valida el select. GET refleja en la URL los campos enviados mediante sus atributos name. -->
+        <form class="revision-form" action="#revision" method="get">
+          <fieldset>
+            <legend class="revision-leyenda">Ficha de revisión</legend>
+            <div class="campo">
+              <label for="apartado" class="etiqueta">Apartado</label>
+              <select id="apartado" name="apartado" class="control" required>
+                <option value="">Elige un apartado</option>
+                <option value="datos">Preparación de datos</option>
+                <option value="grafo">Exploración del grafo</option>
+                <option value="entrega">Entrega y comunicación</option>
+              </select>
+            </div>
+            <div class="opcion">
+              <input id="comprobar-movil" name="movil" value="si" class="casilla" type="checkbox">
+              <label for="comprobar-movil" class="etiqueta">Incluir comprobación en móvil</label>
+            </div>
+            <button type="submit" class="accion">Preparar selección</button>
+          </fieldset>
+        </form>
+      </section>
+    </div>
+  </main>
+  <!-- Pie de página con el enlace a la guía de comparación. -->
+  <footer class="pie">
+    <div class="envoltura">
+      <p class="pie-texto"><small>Ejemplo de aula · <abbr title="Business Data Analytics">BDA</abbr> · <a href="../../documentacion/Guia_Ciclo_Web.md">Guía de comparación</a></small></p>
+    </div>
+  </footer>
+</body>
+</html>

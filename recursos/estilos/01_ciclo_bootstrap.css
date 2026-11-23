@@ -1,0 +1,64 @@
+/* Etapa 3. La cuadrícula, las tarjetas y los controles son de Bootstrap.
+   Esta hoja personaliza tema, tipografía, la nota de herencia y el progreso nativo. */
+/* Esta hoja llega después de Bootstrap. Las variables --bs personalizan el tema que usan sus componentes. */
+:root {
+  --bs-body-bg: #f7f7fc;
+  --bs-body-color: #172d44;
+  --bs-link-color: #0b655b;
+  --bs-link-color-rgb: 11, 101, 91;
+  --bs-link-hover-color-rgb: 7, 72, 65;
+  --bs-border-color: #d3d9e6;
+}
+.cabecera, .pie { background: #fff; }
+:focus-visible { outline: 3px solid #215fb8; outline-offset: 2px; }
+/* Variable de ámbito local. Cambia el fondo del enlace activo solo en la navegación de etapas. */
+.etapas { --bs-nav-pills-link-active-bg: #0b655b; }
+/* Ajustes tipográficos propios. El tamaño base del título viene de la clase de Bootstrap. */
+.titulo-panel { letter-spacing: -.035em; line-height: 1.06; }
+.introduccion { max-width: 49ch; }
+.resumen-caja { color: #174b44; background: #dceee7; }
+progress { display: block; width: 100%; margin-block: .55rem; accent-color: #0b655b; }
+/* Las variables del componente controlan su aspecto normal y sus estados de interacción. */
+.btn-primary {
+  --bs-btn-bg: #0b655b;
+  --bs-btn-border-color: #0b655b;
+  --bs-btn-hover-bg: #074841;
+  --bs-btn-hover-border-color: #074841;
+  --bs-btn-active-bg: #06453e;
+  --bs-btn-active-border-color: #06453e;
+}
+.btn-outline-primary {
+  --bs-btn-color: #0b655b;
+  --bs-btn-border-color: #0b655b;
+  --bs-btn-hover-bg: #0b655b;
+  --bs-btn-hover-border-color: #0b655b;
+}
+.indice .navbar { border-block: 1px solid var(--bs-border-color); }
+.ficha { --bs-card-bg: #fff; border-top: 3px solid #b4dcd4; }
+.columna:nth-child(2) .ficha { border-top-color: #c7b8eb; }
+.columna:nth-child(3) .ficha { border-top-color: #efcfa2; }
+.fase-icono { display: block; }
+/* Los descendientes de la nota toman su color salvo cuando tienen uno propio. */
+.nota {
+  margin-top: 1.1rem;
+  padding: 1rem;
+  border-inline-start: 4px solid #0b655b;
+  background: #eaf3f9;
+  color: #36546b;
+}
+/* El combinador > selecciona el hijo directo. El espacio en .nota .excepcion admite cualquier profundidad. */
+.nota > h3 { font-size: 1.15rem; }
+.nota > p { margin-bottom: 0; }
+.nota .excepcion { color: #7b361a; }
+.tabla { --bs-table-bg: #fff; }
+.revision-form { background: #fff; }
+/* Las variables del acordeón personalizan sus estados sin cambiar la lógica de Bootstrap. */
+.accordion {
+  --bs-accordion-btn-bg: #f8f5ff;
+  --bs-accordion-active-bg: #ede5fa;
+  --bs-accordion-active-color: #432b65;
+}
+.revision-form { max-width: 36rem; }
+/* El ajuste del fondo se limita a la lista del bloque de referencias. */
+.referencias .list-group { --bs-list-group-bg: #fff; }
+

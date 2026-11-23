@@ -1,0 +1,218 @@
+<!-- HTML5. El doctype activa el modo estándar. Lee estos comentarios en el código fuente. -->
+<!doctype html>
+<html lang="es">
+<!-- Metadatos. charset conserva las tildes y viewport fija el ancho de referencia en móviles. -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seguimiento del Reto 10 · HTML5 + CSS3 + Bootstrap</title>
+  <!-- Bootstrap se carga primero. La hoja propia ajusta el tema a continuación. -->
+  <link rel="stylesheet" href="../../recursos/bibliotecas/bootstrap-5.3.8.min.css">
+  <link rel="stylesheet" href="../../recursos/estilos/01_ciclo_bootstrap.css">
+  <!-- El bundle de Bootstrap activa el menú móvil. defer espera a que se haya construido el DOM. -->
+  <script src="../../recursos/bibliotecas/bootstrap-5.3.8.bundle.min.js" defer></script>
+</head>
+<body>
+  <a class="salto visually-hidden-focusable" href="#contenido">Saltar al contenido</a>
+  <header class="cabecera border-bottom">
+    <div class="envoltura container py-3">
+      <p class="marca fw-bold mb-1"><a href="../../index.html">Laboratorio web</a> · Reto 10</p>
+      <!-- Navegación entre archivos. aria-current identifica la versión abierta. -->
+      <nav aria-label="Versiones del ejemplo">
+        <ul class="etapas nav nav-pills flex-wrap gap-2">
+        <li><a href="01_ciclo_1_html.html" class="nav-link">1. HTML5</a></li>
+        <li><a href="01_ciclo_2_css.html" class="nav-link">2. HTML5 + CSS3</a></li>
+        <li><a href="01_ciclo_3_bootstrap.html" aria-current="page" class="nav-link active">3. HTML5 + CSS3 + Bootstrap</a></li>
+        <li><a href="01_ciclo_4_avanzado.html" class="nav-link">4. Edición bilingüe</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- Contenido principal. El enlace «Saltar al contenido» apunta a su id. -->
+  <main id="contenido">
+    <div class="envoltura container py-4 py-lg-5">
+      <!-- Introducción temática. aria-labelledby obtiene el nombre de la sección a partir del h1 indicado. -->
+      <section class="apertura row g-4 align-items-center mb-5" aria-labelledby="panel-titulo">
+        <div class="presentacion col-12 col-lg-8">
+          <h1 id="panel-titulo" class="titulo-panel display-4 fw-bold">Seguimiento del Reto 10</h1>
+          <p class="introduccion lead">Consulta el estado de la aplicación de aula y prepara la próxima revisión del equipo.</p>
+          <ul class="acciones list-unstyled d-flex flex-wrap gap-2 mb-0">
+            <li><a href="#revision" class="accion btn btn-primary">Preparar revisión</a></li>
+            <li><a href="../grafos/02_grafo.html" class="accion secundaria btn btn-outline-primary">Abrir el grafo de aula</a></li>
+          </ul>
+        </div>
+        <figure class="resumen col-12 col-lg-4 mb-0">
+          <div class="resumen-caja p-3 p-lg-4 rounded-3">
+            <label for="progreso"><strong>Avance de aula</strong></label>
+            <!-- Barra nativa de HTML. value indica el avance y max es el total. -->
+            <progress id="progreso" max="3" value="2">2 de 3</progress>
+            <figcaption>Dos de las tres tareas de la muestra han superado la primera revisión.</figcaption>
+          </div>
+        </figure>
+      </section>
+
+      <!-- Índice interno. Un href que empieza por # apunta al elemento con ese id. -->
+      <nav class="indice" aria-label="Contenido del panel">
+        <div class="navbar navbar-expand-md mb-4">
+          <!-- El selector de data-bs-target debe coincidir con el id del panel que se abre. -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#indice-panel" aria-controls="indice-panel" aria-expanded="false" aria-label="Mostrar secciones del panel">
+            <span class="navbar-toggler-icon"></span> Secciones
+          </button>
+          <div id="indice-panel" class="collapse navbar-collapse">
+            <ul class="indice-enlaces navbar-nav flex-wrap gap-md-3">
+              <li><a href="#fases" class="enlace-seccion nav-link">Fases</a></li>
+              <li><a href="#indicadores" class="enlace-seccion nav-link">Indicadores</a></li>
+              <li><a href="#revision" class="enlace-seccion nav-link">Revisión</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Cada fase es un article con su h3. Los div de columna agrupan elementos para el diseño. -->
+      <section id="fases" class="seccion mb-5" aria-labelledby="fases-titulo">
+        <h2 id="fases-titulo" class="titulo-seccion h2 fw-bold">Fases del trabajo</h2>
+        <p>Revisa los datos, interpreta el grafo y prepara la entrega.</p>
+        <div class="tarjetas row g-3">
+          <!-- Cuadrícula de doce columnas. col-12 llena la fila, col-md-6 ocupa la mitad y col-lg-4 un tercio. -->
+          <div class="columna col-12 col-md-6 col-lg-4">
+            <article class="ficha card h-100">
+              <div class="ficha-cuerpo card-body">
+                <img class="fase-icono mb-2" src="../../recursos/bibliotecas/check2-square.svg" width="24" height="24" alt="">
+          <h3 class="titulo-ficha h5 card-title">Preparación de datos</h3>
+                <p class="estado badge text-bg-success">Revisado</p>
+                <p>Identifica las fuentes y comprueba qué representa cada enlace.</p>
+                <ul class="lista-ficha list-group list-group-flush">
+                  <li class="tarea list-group-item px-0">Identificadores únicos</li>
+                  <li class="tarea list-group-item px-0">Tipos de evidencia
+                    <ul><li>Fuente</li><li>Fecha de revisión</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+          <div class="columna col-12 col-md-6 col-lg-4">
+            <article class="ficha card h-100">
+              <div class="ficha-cuerpo card-body">
+                <img class="fase-icono mb-2" src="../../recursos/bibliotecas/diagram-3.svg" width="24" height="24" alt="">
+          <h3 class="titulo-ficha h5 card-title">Exploración del grafo</h3>
+                <p class="estado badge text-bg-success">Revisado</p>
+                <p>Interpreta nodos y aristas en la muestra del proyecto.</p>
+                <ol class="lista-ficha"><li>Selecciona un nodo.</li><li>Consulta sus vecinos.</li><li>Anota una limitación.</li></ol>
+              </div>
+            </article>
+          </div>
+          <div class="columna col-12 col-md-6 col-lg-4">
+            <article class="ficha card h-100">
+              <div class="ficha-cuerpo card-body">
+                <img class="fase-icono mb-2" src="../../recursos/bibliotecas/journal-text.svg" width="24" height="24" alt="">
+          <h3 class="titulo-ficha h5 card-title">Entrega y comunicación</h3>
+                <p class="estado pendiente badge text-bg-warning">Pendiente</p>
+                <p>Prepara la demostración y explica la procedencia de los datos.</p>
+                <dl class="lista-ficha mb-0"><dt>Entregable</dt><dd>Prototipo responsive.</dd><dt>Evidencia</dt><dd>Dos tamaños de pantalla comprobados.</dd></dl>
+              </div>
+            </article>
+          </div>
+        </div>
+        <!-- Nota complementaria. En la etapa CSS, compara el color heredado del párrafo con el del span. -->
+        <aside class="nota" aria-labelledby="nota-titulo">
+          <h3 id="nota-titulo">Nota de alcance</h3>
+          <p id="texto-herencia">La página usa datos <em>sintéticos</em> de aula. <span id="texto-excepcion" class="excepcion"><strong>Comprueba la fuente antes de interpretar.</strong></span></p>
+        </aside>
+      </section>
+
+      <section id="indicadores" class="seccion mb-5" aria-labelledby="indicadores-titulo">
+        <h2 id="indicadores-titulo" class="titulo-seccion h2 fw-bold">Indicadores del ejemplo</h2>
+        <div class="tabla-contenedor table-responsive">
+          <!-- caption describe la tabla y scope vincula cada encabezado con su fila o columna. -->
+          <table class="tabla table table-striped align-middle">
+            <caption>Indicadores de la demostración del laboratorio.</caption>
+            <thead><tr><th scope="col">Indicador</th><th scope="col">Valor</th><th scope="col">Lectura</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Tareas revisadas</th><td>2 de 3</td><td>Una espera revisión.</td></tr>
+              <tr><th scope="row">Vistas del grafo</th><td>3</td><td>D3, Plotly.js y NVD3.</td></tr>
+              <tr><th scope="row">Anchos de comprobación</th><td>3</td><td>390, 768 y 1200 píxeles.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Bootstrap agrupa los paneles. data-bs-parent cierra el panel anterior al abrir otro. -->
+        <div class="accordion mt-3" id="indicadores-acordeon-3">
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#origen-3" aria-expanded="false" aria-controls="origen-3">Cómo se han definido estos valores</button>
+            </h3>
+            <div id="origen-3" class="accordion-collapse collapse" data-bs-parent="#indicadores-acordeon-3">
+              <div class="accordion-body"><p>Los valores describen esta demostración. En una entrega, documenta el origen de cada indicador y la fecha de comprobación.</p></div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#interpretacion-3" aria-expanded="false" aria-controls="interpretacion-3">Qué puedes interpretar</button>
+            </h3>
+            <div id="interpretacion-3" class="accordion-collapse collapse" data-bs-parent="#indicadores-acordeon-3">
+              <div class="accordion-body"><p>Los indicadores describen un ejemplo de aula. Para valorar un cambio en la web, observa si los usuarios completan una tarea concreta.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="revision" class="seccion mb-4" aria-labelledby="revision-titulo">
+        <h2 id="revision-titulo" class="titulo-seccion h2 fw-bold">Preparar la revisión</h2>
+        <p>Selecciona el apartado que vas a revisar. El ejemplo muestra la selección en la URL mediante un formulario local.</p>
+        <!-- required valida el select. GET refleja en la URL los campos enviados mediante sus atributos name. -->
+        <form class="revision-form p-3 p-md-4 border rounded-3" action="#revision" method="get">
+          <fieldset>
+            <legend class="revision-leyenda h5">Ficha de revisión</legend>
+            <div class="campo mb-3">
+              <label for="apartado" class="etiqueta form-label">Apartado</label>
+              <select id="apartado" name="apartado" class="control form-select" required>
+                <option value="">Elige un apartado</option>
+                <option value="datos">Preparación de datos</option>
+                <option value="grafo">Exploración del grafo</option>
+                <option value="entrega">Entrega y comunicación</option>
+              </select>
+            </div>
+            <div class="opcion form-check mb-3">
+              <input id="comprobar-movil" name="movil" value="si" class="casilla form-check-input" type="checkbox">
+              <label for="comprobar-movil" class="etiqueta form-check-label">Incluir comprobación en móvil</label>
+            </div>
+            <button type="submit" class="accion btn btn-primary">Preparar selección</button>
+          </fieldset>
+        </form>
+        <!-- Este Collapse se abre por separado. Su botón apunta al id y no usa data-bs-parent. -->
+        <div class="mt-3">
+          <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#criterios-3"
+            aria-expanded="false" aria-controls="criterios-3">Ver criterios de revisión</button>
+          <div id="criterios-3" class="collapse mt-2">
+            <ul class="list-group">
+              <li class="list-group-item">Comprueba 390 y 1200 px.</li>
+              <li class="list-group-item">Usa Tab para llegar a los controles.</li>
+              <li class="list-group-item">Guarda una evidencia y explica qué cambió.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <aside class="referencias border-top pt-4 mt-5" aria-labelledby="referencias-titulo">
+        <h2 id="referencias-titulo">Cambiar el diseño con Bootstrap</h2>
+        <p>Localiza la clase en esta página y consulta el ejemplo oficial antes de modificarla.</p>
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Columnas.</strong> Cambia <code>col-lg-4</code> por <code>col-lg-6</code> en las tres tarjetas. <a href="https://getbootstrap.com/docs/5.3/layout/grid/">Grid</a> · <a href="https://getbootstrap.com/docs/5.3/layout/breakpoints/">Breakpoints</a></li>
+          <li class="list-group-item"><strong>Tarjetas y estados.</strong> Explora <code>card-body</code> y cambia una etiqueta de <code>text-bg-success</code> a <code>text-bg-secondary</code> como prueba de estilo. <a href="https://getbootstrap.com/docs/5.3/components/card/">Cards</a> · <a href="https://getbootstrap.com/docs/5.3/components/badge/">Badges</a></li>
+          <li class="list-group-item"><strong>Encabezados y espacios.</strong> Alterna <code>display-4</code> y <code>display-5</code>, o compara <code>g-3</code> y <code>g-4</code>. <a href="https://getbootstrap.com/docs/5.3/content/typography/">Tipografía</a> · <a href="https://getbootstrap.com/docs/5.3/utilities/spacing/">Espaciado</a></li>
+          <li class="list-group-item"><strong>Navegación y acciones.</strong> Prueba <code>navbar-expand-lg</code> y <code>btn-outline-primary</code>. <a href="https://getbootstrap.com/docs/5.3/components/navbar/">Navbar</a> · <a href="https://getbootstrap.com/docs/5.3/components/buttons/">Botones</a></li>
+          <li class="list-group-item"><strong>Listas, tablas y formularios.</strong> Compara <code>list-group-flush</code>, <code>table-striped</code> y <code>form-select</code> con sus variantes. <a href="https://getbootstrap.com/docs/5.3/components/list-group/">List group</a> · <a href="https://getbootstrap.com/docs/5.3/content/tables/">Tablas</a> · <a href="https://getbootstrap.com/docs/5.3/forms/overview/">Formularios</a></li>
+          <li class="list-group-item"><strong>Iconos.</strong> Busca otro símbolo, descarga su SVG y cambia el <code>src</code>. Conserva <code>alt=""</code> cuando el icono solo acompaña a un texto. <a href="https://icons.getbootstrap.com/">Catálogo de Bootstrap Icons</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+  <!-- Pie de página con el enlace a la guía de comparación. -->
+  <footer class="pie border-top">
+    <div class="envoltura container py-3">
+      <p class="pie-texto mb-0"><small>Ejemplo de aula · <abbr title="Business Data Analytics">BDA</abbr> · <a href="../../documentacion/Guia_Ciclo_Web.md">Guía de comparación</a></small></p>
+    </div>
+  </footer>
+</body>
+</html>
