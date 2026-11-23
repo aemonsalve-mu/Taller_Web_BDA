@@ -1,0 +1,44 @@
+
+/* Estilos compartidos por las prácticas. Las variables reúnen las decisiones de color. */
+:root { color-scheme: light; --ink:#162742; --muted:#465873; --accent:#0b655b; --bg:#eff5f7; --line:#c7d5df; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:1rem/1.6 system-ui,sans-serif; }
+/* Contenedor centrado con relleno lateral fluido. La vista comparativa puede utilizar esta cuadrícula local. */
+.container { max-width:1140px; margin-inline:auto; padding-inline:clamp(16px,4vw,38px); }
+.row { display:flex; flex-wrap:wrap; margin-inline:-8px; row-gap:16px; }
+/* Aplica relleno a los hijos directos de la fila. Desde 768 px y 992 px aparecen columnas de distinto ancho. */
+.row > * { padding-inline:8px; }
+.col-12 { width:100%; }
+@media (min-width:768px) { .col-md-6 {width:50%;} }
+@media (min-width:992px) { .col-lg-4 {width:33.333%;} .col-lg-8 {width:66.667%;} }
+/* Jerarquía visual de los títulos. El HTML establece el nivel semántico. */
+h1,h2,h3 { line-height:1.14; }
+h1 { font-size:clamp(2.05rem,5vw,4rem); margin:0 0 16px; max-width:19ch; letter-spacing:-.04em; }
+h2 { font-size:clamp(1.45rem,3vw,2.15rem); margin:0 0 12px; }
+h3 { font-size:1.15rem; margin:0 0 8px; }
+p { margin:0 0 14px; max-width:68ch; }
+a { color:var(--accent); text-underline-offset:.2em; }
+:focus-visible { outline:3px solid #235ec4; outline-offset:3px; }
+.site-header { background:white; border-bottom:1px solid var(--line); }
+/* Flexbox reparte el espacio entre título y navegación. En móvil puede haber más de una fila. */
+.navbar-local { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 24px; padding-block:15px; }
+.navbar-local nav,.actions { display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; }
+.brand { font-weight:800; color:var(--ink); text-decoration:none; }
+.hero { background:#dfeeea; padding-block:clamp(28px,6vw,70px); }
+.hero p { color:var(--muted); font-size:1.12rem; }
+.section { padding-block:clamp(24px,5vw,48px); }
+/* Estilo de tarjeta reutilizable. La altura completa permite alinear paneles de una misma fila. */
+.panel { background:white; border:1px solid var(--line); border-radius:14px; padding:clamp(14px,3vw,24px); height:100%; }
+.action { display:inline-block; appearance:none; border:1px solid var(--accent); border-radius:8px; background:var(--accent); color:white; padding:9px 14px; font:inherit; font-weight:650; text-decoration:none; cursor:pointer; }
+.action:hover { background:#084d45; color:white; }
+.action.secondary { background:white; color:var(--accent); }
+label { font-weight:650; }
+select { font:inherit; max-width:100%; padding:5px 8px; }
+.status { color:var(--muted); margin-top:12px; }
+/* Oculta información visualmente y la conserva disponible para tecnologías de asistencia. */
+.sr-only { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+table { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+th,td { padding:6px 8px; border-bottom:1px solid var(--line); text-align:left; }
+footer { border-top:1px solid var(--line); padding-block:18px; color:var(--muted); }
+/* Cuando JavaScript activa hidden, la tarjeta se oculta y libera su espacio en la fila. */
+[hidden] { display:none !important; }
