@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grafo PPI de aula · Reto 10</title>
+  <link rel="stylesheet" href="../../recursos/bibliotecas/bootstrap-5.3.8.min.css">
+  <link rel="stylesheet" href="../../recursos/estilos/estilos.css">
+  <style>
+    .graph { width:100%; height:auto; display:block; background:#f0f6f7; border-radius:12px; }
+    .edge { stroke:#52677c; stroke-width:2; }
+    .candidate { stroke:#a54b06; stroke-width:3; stroke-dasharray:8 6; }
+    .node { cursor:pointer; }
+    .node circle { fill:white; stroke:#0b655b; stroke-width:3; }
+    .node text { fill:#162742; font-weight:800; font-size:11px; text-anchor:middle; dominant-baseline:central; pointer-events:none; }
+    .node.active circle { fill:#a9dfcf; stroke:#063c35; stroke-width:5; }
+    .node:focus-visible circle { stroke:#235ec4; stroke-width:5; }
+    .dim { opacity:.17; }
+    .table-wrap { overflow-x:auto; }
+    .settings { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-block:12px; }
+    .preguntas { margin-top:32px; }
+    .preguntas details { background:white; border:1px solid var(--line); border-radius:8px; margin-block:8px; padding:12px; }
+    .preguntas summary { font-weight:650; cursor:pointer; }
+  </style>
+  <!-- Los scripts defer se ejecutan en orden. D3 precede a los datos y a la lógica que construye el grafo. -->
+  <script src="../../recursos/bibliotecas/d3-7.9.0.min.js" defer></script>
+  <script src="../../recursos/scripts/02_datos_red.js" defer></script>
+  <script src="../../recursos/scripts/02_grafo.js" defer></script>
+  <script src="../../recursos/scripts/02_reto_ppi.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar-local">
+      <span class="brand">Reto 10 · Red PPI</span>
+      <nav aria-label="Prácticas"><a href="../../index.html">Laboratorio web</a><a href="02_comparativa_grafos.html">Plotly.js y NVD3</a><a href="../casos/03_protoqsar.html">ProtoQSAR</a></nav>
+    </div>
+  </header>
+  <main class="container section">
+    <h1>Explorar la red de TLR2</h1>
+    <p><strong>Red sintética de aula.</strong> Los nombres proceden del contexto del reto. Las aristas y el conjunto de prueba se han creado para el ejercicio. Una arista representa una asociación sin dirección en este ejemplo.</p>
+    <div class="row">
+      <section class="col-12 col-lg-8" aria-labelledby="titulo-grafo">
+        <div class="panel">
+          <h2 id="titulo-grafo">Red de entrenamiento</h2>
+          <div class="settings">
+            <label for="equipo">Proteína</label>
+            <select id="equipo"><option value="">Todos</option></select>
+            <label><input id="candidatos" class="form-check-input" type="checkbox"> Dibujar candidatos</label>
+            <label><input id="quitar-nfkb1" class="form-check-input" type="checkbox"> Simular retirada de NFKB1</label>
+          </div>
+          <!-- Aquí se insertan nodos y aristas. viewBox define el sistema de coordenadas del dibujo. -->
+          <svg id="red" class="graph" viewBox="0 0 500 375" role="group" aria-label="Red interactiva sintética de proteínas"></svg>
+          <p id="vecinos" class="status" role="status"></p>
+          <p><strong>Línea continua</strong> asociación incluida en entrenamiento · <strong>Línea discontinua</strong> candidata del top k.</p>
+          <p id="disposicion" class="status">Posiciones fijas de respaldo.</p>
+        </div>
+      </section>
+      <!-- Ranking de candidatos. El script inserta las filas y actualiza los resultados al cambiar k. -->
+      <section class="col-12 col-lg-4" aria-labelledby="titulo-ranking">
+        <div class="panel">
+          <h2 id="titulo-ranking">Candidatos</h2>
+          <p>Puntuación por vecinos comunes sobre la red inicial. Los empates se ordenan por el ID de la pareja en el archivo de datos.</p>
+          <div class="settings">
+            <label for="top">Top k</label>
+            <select id="top"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">Candidatos ordenados por puntuación</caption>
+              <thead><tr><th scope="col">Par</th><th scope="col">Vecinos</th><th scope="col">Puntos</th></tr></thead>
+              <tbody id="ranking"></tbody>
+            </table>
+          </div>
+          <div class="settings"><button id="revelar" class="action" type="button" aria-controls="resultado" aria-expanded="false">Revelar periodo de prueba</button></div>
+          <p id="resultado" role="status" hidden></p>
+        </div>
+      </section>
+    </div>
+    <!-- Cada details contiene una respuesta calculada a partir de la red de aula. -->
+    <section class="preguntas" aria-labelledby="preguntas-titulo">
+      <h2 id="preguntas-titulo">Las cinco preguntas del cliente en la red de aula</h2>
+      <details><summary>P1 · ¿Aparece IL10?</summary><p id="p1"></p></details>
+      <details><summary>P2 · ¿Qué caminos conectan TLR2, NFKB1 e IL10?</summary><p id="p2"></p></details>
+      <details><summary>P3 · ¿Qué cambia al retirar NFKB1?</summary><p id="p3"></p></details>
+      <details><summary>P4 · ¿Qué nodos tienen mayor grado?</summary><p id="p4"></p></details>
+      <details><summary>P5 · ¿Qué puede sugerir una línea base si solo conocemos el enlace con IL10?</summary><p id="p5"></p></details>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La misma red en Plotly.js y NVD3</title>
+  <link rel="stylesheet" href="../../recursos/estilos/estilos.css">
+  <link rel="stylesheet" href="../../recursos/bibliotecas/nvd3-1.8.6.min.css">
+  <style>
+    .comparacion { display:grid; grid-template-columns:minmax(0, 1fr); gap:16px; }
+    @media (min-width:992px) { .comparacion { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    .network { display:block; width:100%; border-radius:10px; background:#f0f6f7; }
+    #plotly-red { height:clamp(260px,62vw,360px); }
+    #nvd3-red { height:clamp(260px,62vw,360px); }
+    .nv-force-node { cursor:grab; }
+    .nv-force-node:active { cursor:grabbing; }
+    .nv-force-node text { font:700 9px system-ui,sans-serif; pointer-events:none; }
+    .nv-force-node circle { stroke:#0b655b; stroke-width:2.5px; }
+    .nv-force-node .seleccionado { stroke-width:4px; }
+    .matrix { overflow-x:auto; }
+  </style>
+  <script src="../../recursos/bibliotecas/plotly-basic-3.0.1.min.js" defer></script>
+  <!-- NVD3 usa la API de D3 v3. Carga esa versión antes del script de NVD3. -->
+  <script src="../../recursos/bibliotecas/d3-3.5.17.min.js" defer></script>
+  <script src="../../recursos/bibliotecas/nvd3-1.8.6.min.js" defer></script>
+  <!-- Los dos gráficos usan los mismos nodos y enlaces de entrenamiento. -->
+  <script src="../../recursos/scripts/02_datos_red.js" defer></script>
+  <script src="../../recursos/scripts/02_comparativa_grafos.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar-local">
+      <span class="brand">Reto 10 · Red PPI</span>
+      <nav aria-label="Prácticas">
+        <a href="02_grafo.html">Volver al grafo y a la predicción</a>
+        <a href="../casos/03_protoqsar.html">ProtoQSAR</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container section">
+    <h1>La misma red en dos bibliotecas</h1>
+    <p>Compara dos dibujos de la red sintética de aula. Selecciona una proteína para resaltar sus enlaces en ambas vistas.</p>
+    <label for="equipo-comparado">Proteína</label>
+    <select id="equipo-comparado"><option value="">Todos</option></select>
+    <p id="vecinos-comparados" class="status" role="status"></p>
+
+    <div class="comparacion">
+      <!-- Plotly rellena un contenedor HTML con sus trazas y controles. -->
+      <section class="panel" aria-labelledby="titulo-plotly">
+        <h2 id="titulo-plotly">Plotly.js</h2>
+        <p>Usa el zoom para explorar el dibujo o pasa el puntero sobre un nodo para consultar su grado.</p>
+        <div id="plotly-red" class="network" aria-label="Red sintética de proteínas en Plotly.js"></div>
+        <p id="estado-plotly" class="status" hidden></p>
+      </section>
+      <section class="panel" aria-labelledby="titulo-nvd3">
+        <h2 id="titulo-nvd3">NVD3</h2>
+        <p>Arrastra un nodo y observa cómo se reajustan sus enlaces con la simulación de fuerzas.</p>
+        <!-- NVD3 dibuja directamente dentro de este SVG. -->
+        <svg id="nvd3-red" class="network" viewBox="0 0 500 375" role="img" aria-label="Red sintética de proteínas en NVD3"></svg>
+        <p id="estado-nvd3" class="status" hidden></p>
+      </section>
+    </div>
+
+    <section class="section" aria-labelledby="titulo-comparacion">
+      <h2 id="titulo-comparacion">Qué aporta cada implementación</h2>
+      <div class="matrix">
+        <table>
+          <thead><tr><th scope="col">Biblioteca</th><th scope="col">Datos y posición</th><th scope="col">Interacción del ejemplo</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Plotly.js</th><td>Trazas <code>scatter</code> para líneas y nodos, con coordenadas fijas.</td><td>Zoom, detalle al pasar el puntero y selección.</td></tr>
+            <tr><th scope="row">NVD3</th><td><code>forceDirectedGraph()</code> con nodos y enlaces. D3 v3 calcula la posición.</td><td>Arrastre de nodos y selección.</td></tr>
+            <tr><th scope="row"><a href="02_grafo.html">D3 v7</a></th><td>Elementos SVG y simulación de fuerzas configurada en el código del taller.</td><td>Vecindad y superposición de las candidatas del ranking.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="status">El grado es el número de enlaces incidentes de un nodo. La distancia entre nodos depende del dibujo. La práctica de predicción puntúa las candidatas por vecinos comunes.</p>
+    </section>
+  </main>
+</body>
+</html>

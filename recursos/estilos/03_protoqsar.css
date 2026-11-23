@@ -1,0 +1,63 @@
+/* Las variables personalizan el tema. El bundle de Bootstrap controla Tabs, Collapse y Accordion. */
+:root {
+  --bs-body-bg: #f7f8fc;
+  --bs-body-color: #192c3a;
+  --bs-link-color-rgb: 13, 94, 82;
+  --bs-link-hover-color-rgb: 8, 67, 59;
+  --bs-border-color: #d5dce6;
+  --case-ink: #18313e;
+  --case-mint: #dff0e9;
+  --case-lilac: #eee7f7;
+  --case-blue: #e7eff9;
+}
+body { font-family: system-ui, sans-serif; }
+:focus-visible { outline: 3px solid #3664a4; outline-offset: 3px; }
+.visually-hidden-focusable:focus { background: white; padding: .65rem; position: absolute; z-index: 3; }
+.case-nav, .case-footer { background: #fff; border-block: 1px solid var(--bs-border-color); }
+.case-brand { color: var(--case-ink); font-weight: 780; text-decoration: none; }
+.case-hero { background: linear-gradient(115deg, var(--case-mint), var(--case-lilac)); border-bottom: 1px solid var(--bs-border-color); }
+.case-phase { color: #503979; font-size: .87rem; font-weight: 730; }
+h1 { max-width: 19ch; font-size: clamp(2.45rem, 5.7vw, 5rem); line-height: 1.02; letter-spacing: -.052em; font-weight: 840; }
+.case-hero .lead { max-width: 49ch; font-weight: 480; }
+.case-route, .case-surface { border: 1px solid var(--bs-border-color); border-radius: .9rem; background: #fff; }
+.case-route { padding: clamp(1rem, 2.8vw, 1.6rem); }
+.case-route ol { display: grid; gap: .65rem; }
+.case-route li { padding: .68rem .75rem; border-radius: .55rem; background: var(--case-mint); }
+.case-route li + li { background: var(--case-lilac); }
+.btn-case-primary, .btn-case-outline { font-weight: 680; }
+.btn-case-primary {
+  --bs-btn-color: white; --bs-btn-bg: #176357; --bs-btn-border-color: #176357;
+  --bs-btn-hover-color: white; --bs-btn-hover-bg: #104b42; --bs-btn-hover-border-color: #104b42;
+  --bs-btn-active-color: white; --bs-btn-active-bg: #104b42; --bs-btn-active-border-color: #104b42;
+}
+.btn-case-outline {
+  --bs-btn-color: #432b63; --bs-btn-bg: #fbf8ff; --bs-btn-border-color: #a38fbc;
+  --bs-btn-hover-color: #382158; --bs-btn-hover-bg: #eee5fa; --bs-btn-hover-border-color: #8a73a7;
+  --bs-btn-active-color: #382158; --bs-btn-active-bg: #eee5fa; --bs-btn-active-border-color: #8a73a7;
+}
+.case-section { padding-top: clamp(2rem, 5vw, 4rem); }
+.case-heading { max-width: 69ch; margin-bottom: 1.05rem; }
+.case-heading h2 { font-weight: 780; letter-spacing: -.035em; }
+.case-matrix { --bs-table-bg: #fff; min-width: 39rem; }
+.case-matrix th, .case-matrix td { padding: .72rem .85rem; }
+.case-matrix thead { --bs-table-bg: #eaf0f9; }
+.case-matrix tbody tr:last-child > * { border-bottom: 0; }
+.case-badge-high { color: #4c346a; background: #eae0f7; }
+.case-badge-medium { color: #66450e; background: #f5e9cf; }
+.case-tabs { --bs-nav-tabs-link-active-color: #432b63; --bs-nav-tabs-link-active-bg: #fff; }
+.case-tabs .nav-link { font-weight: 690; }
+.case-panels { border-top: 0; border-start-start-radius: 0; padding: clamp(.85rem, 2.8vw, 1.5rem); }
+.prototype-intro { padding: clamp(.85rem, 2.8vw, 1.5rem); border-radius: .65rem; background: var(--case-mint); }
+.prototype-intro p { max-width: 59ch; }
+.service { padding: .85rem; border-radius: .7rem; background: var(--case-blue); }
+.service-grid article:nth-child(2) .service { background: var(--case-lilac); }
+.service-grid article:nth-child(3) .service { background: #f8efdc; }
+.service h5 { font-size: 1.05rem; font-weight: 740; }
+.service p { margin-bottom: 0; }
+.accordion {
+  --bs-accordion-btn-bg: #faf8fe;
+  --bs-accordion-active-bg: #eee7f8;
+  --bs-accordion-active-color: #432b65;
+}
+.case-footer { color: #40576a; }
+

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Experiencia de usuario de ProtoQSAR · Reto 10</title>
+  <link rel="stylesheet" href="../../recursos/bibliotecas/bootstrap-5.3.8.min.css">
+  <link rel="stylesheet" href="../../recursos/estilos/03_protoqsar.css">
+  <!-- El bundle activa las pestañas, los paneles plegables y el acordeón. -->
+  <script src="../../recursos/bibliotecas/bootstrap-5.3.8.bundle.min.js" defer></script>
+</head>
+<body>
+  <a class="visually-hidden-focusable" href="#contenido">Saltar al contenido</a>
+  <header class="case-nav">
+    <nav class="container d-flex flex-wrap justify-content-between align-items-center gap-2 py-3" aria-label="Navegación del caso">
+      <a class="case-brand" href="../../index.html">Reto 10 · Laboratorio web</a>
+      <div class="d-flex flex-wrap gap-3">
+        <a href="../laboratorio/01_ciclo_4_avanzado.html">Volver a la edición bilingüe</a>
+        <a href="../grafos/02_grafo.html">Grafo de aula</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="case-hero">
+      <div class="container py-5">
+        <div class="row g-4 align-items-center">
+          <div class="col-12 col-lg-7">
+            <p class="case-phase mb-2">Fase final · Experiencia de usuario</p>
+            <h1>Dos caminos para el cliente de ProtoQSAR</h1>
+            <p class="lead">¿Puede una empresa decidir desde la portada si debe usar ProtoPRED o pedir un estudio a medida?</p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-case-primary" href="#prototipo">Probar la propuesta</a>
+              <a class="btn btn-case-outline" href="#auditoria">Leer la auditoría</a>
+              <a class="btn btn-link" href="https://protoqsar.com/en/">Abrir la portada oficial</a>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5">
+            <div class="case-route">
+              <h2 class="h5">Recorridos que vamos a comparar</h2>
+              <ol class="list-unstyled mb-0">
+                <li><strong>1. Trabajo autónomo.</strong> Una consultora quiere acceder a la plataforma de predicción.</li>
+                <li><strong>2. Ayuda especializada.</strong> Una empresa busca un estudio adaptado antes de elegir un servicio.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container pb-5">
+      <section id="auditoria" class="case-section" aria-labelledby="titulo-auditoria">
+        <div class="case-heading">
+          <h2 id="titulo-auditoria">Auditoría de la portada</h2>
+          <p>Revisión del contenido y los enlaces de la portada pública en inglés, consultada el 21 de noviembre de 2026. Las fricciones son hipótesis para comprobar en el taller.</p>
+        </div>
+        <div class="table-responsive case-surface" role="region" aria-labelledby="titulo-auditoria" tabindex="0">
+          <table class="table align-middle case-matrix mb-0">
+            <caption class="visually-hidden">Hallazgos, prioridades y propuestas de experiencia de usuario</caption>
+            <thead><tr><th scope="col">Prioridad</th><th scope="col">Evidencia observada</th><th scope="col">Qué comprobar</th><th scope="col">Mejora propuesta</th></tr></thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span class="badge case-badge-high">Alta</span></th>
+                <td>El primer bloque tiene un enlace genérico hacia toxicología. La plataforma tiene además su acceso propio en el menú y en un bloque posterior.</td>
+                <td>Si quien ya busca la plataforma reconoce el destino en su primer clic.</td>
+                <td><strong>Ir a ProtoPRED</strong> como acción principal y visible junto al resumen inicial.</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="badge case-badge-high">Alta</span></th>
+                <td>La portada ofrece un menú de servicios y presenta vías de contacto en las preguntas frecuentes y al final.</td>
+                <td>Si una empresa que necesita un estudio identifica la ruta adecuada y cómo pedir ayuda.</td>
+                <td><strong>Explorar servicios a medida</strong> como segundo camino, con un contacto explícito al final del bloque.</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="badge case-badge-medium">Media</span></th>
+                <td>La portada incluye explicaciones de los servicios y un bloque de preguntas frecuentes.</td>
+                <td>Si los textos ayudan a reconocer qué opción sirve a cada intención.</td>
+                <td>Explicar en una frase a quién sirve cada ruta y conservar las respuestas detalladas más abajo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Este Collapse funciona de manera independiente del acordeón de validación. -->
+        <button class="btn btn-case-outline mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#alcance-ux"
+          aria-expanded="false" aria-controls="alcance-ux">Ver alcance y fuentes</button>
+        <div id="alcance-ux" class="collapse mt-2">
+          <div class="case-surface p-3">
+            <p>La observación corresponde a una revisión experta de contenido y enlaces. Los tiempos, tasas de éxito y diferencias entre dispositivos se medirán con las tareas de clase.</p>
+            <ul class="mb-0">
+              <li><a href="https://protoqsar.com/en/">Portada pública de ProtoQSAR</a>.</li>
+              <li><a href="https://chatgpt.com/library?file_id=libfile_67f97e504eac819190484441f9637e98&amp;account_id=personal">Encargo del Reto 10</a>, páginas 7–9, sobre objetivos B2B, ProtoPRED y estudios a medida.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="prototipo" class="case-section" aria-labelledby="titulo-prototipo">
+        <div class="case-heading">
+          <h2 id="titulo-prototipo">Comparación y propuesta navegable</h2>
+          <p>Compara el recorrido descrito en la auditoría con el prototipo didáctico. Los dos botones de la propuesta tienen destinos distintos.</p>
+        </div>
+        <!-- Las pestañas enlazan cada botón con su panel mediante id y data-bs-target. -->
+        <ul class="nav nav-tabs case-tabs" id="comparador-ux" role="tablist" aria-label="Comparación de la portada y el prototipo">
+          <li class="nav-item" role="presentation">
+            <button id="tab-actual" class="nav-link" type="button" data-bs-toggle="tab" data-bs-target="#panel-actual"
+              role="tab" aria-controls="panel-actual" aria-selected="false">Recorrido actual</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button id="tab-propuesta" class="nav-link active" type="button" data-bs-toggle="tab" data-bs-target="#panel-propuesta"
+              role="tab" aria-controls="panel-propuesta" aria-selected="true">Propuesta</button>
+          </li>
+        </ul>
+        <div class="tab-content case-surface case-panels">
+          <div class="tab-pane fade" id="panel-actual" role="tabpanel" aria-labelledby="tab-actual" tabindex="0">
+            <h3>Cómo están repartidos los accesos</h3>
+            <ul>
+              <li><strong>Plataforma.</strong> Acceso en la navegación o en el bloque de ProtoPRED situado más abajo en la portada.</li>
+              <li><strong>Servicios.</strong> Menú por especialidad. La orientación personalizada aparece en las preguntas frecuentes y en el contacto final.</li>
+            </ul>
+            <a class="btn btn-case-outline" href="https://protoqsar.com/en/">Comprobar los accesos en la portada oficial</a>
+          </div>
+          <div class="tab-pane fade show active" id="panel-propuesta" role="tabpanel" aria-labelledby="tab-propuesta" tabindex="0">
+            <div class="prototype-intro">
+              <h3>Química computacional para evaluar compuestos</h3>
+              <p>Accede a la plataforma si ya sabes qué quieres evaluar. Si necesitas orientación, explora los servicios y pide asesoramiento.</p>
+              <div class="actions d-flex flex-wrap gap-2">
+                <a class="btn btn-case-primary" href="https://protopred.protoqsar.com/">Ir a ProtoPRED</a>
+                <a class="btn btn-case-outline" href="#servicios">Explorar servicios a medida</a>
+              </div>
+            </div>
+            <section id="servicios" class="mt-4" aria-labelledby="titulo-servicios">
+              <h4 id="titulo-servicios">Servicios a medida</h4>
+              <div class="row g-3 service-grid">
+                <article class="col-12 col-md-6 col-lg-4"><div class="service h-100"><h5>Toxicología computacional</h5><p>Evalúa propiedades asociadas a sustancias químicas.</p></div></article>
+                <article class="col-12 col-md-6 col-lg-4"><div class="service h-100"><h5>Diseño y optimización</h5><p>Analiza y prioriza compuestos para un proyecto de investigación o desarrollo.</p></div></article>
+                <article class="col-12 col-md-6 col-lg-4"><div class="service h-100"><h5>Formación</h5><p>Consulta opciones de capacitación en técnicas computacionales.</p></div></article>
+              </div>
+              <a class="btn btn-case-outline mt-3" href="mailto:info@protoqsar.com">Solicitar asesoramiento por correo</a>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section id="validacion" class="case-section" aria-labelledby="titulo-validacion">
+        <div class="case-heading">
+          <h2 id="titulo-validacion">Validación en el aula</h2>
+          <p>Prueba los dos recorridos usando la portada pública y la propuesta. Registra lo que ocurre antes de atribuir un efecto al rediseño.</p>
+        </div>
+        <!-- data-bs-parent mantiene un solo panel de metodología abierto. -->
+        <div class="accordion" id="protocolo-ux">
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button type="button" class="accordion-button" data-bs-toggle="collapse"
+              data-bs-target="#tareas-ux" aria-expanded="true" aria-controls="tareas-ux">1. Tareas sin mencionar el nombre del botón</button></h3>
+            <div id="tareas-ux" class="accordion-collapse collapse show" data-bs-parent="#protocolo-ux">
+              <div class="accordion-body">
+                <ol class="mb-0">
+                  <li>Ya sabes qué debes evaluar. Encuentra la plataforma para empezar una predicción.</li>
+                  <li>Necesitas ayuda para elegir un estudio. Localiza una forma de pedir asesoramiento sin enviar la consulta.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
+              data-bs-target="#medicion-ux" aria-expanded="false" aria-controls="medicion-ux">2. Cómo comparar y medir</button></h3>
+            <div id="medicion-ux" class="accordion-collapse collapse" data-bs-parent="#protocolo-ux">
+              <div class="accordion-body">
+                <p>Alterna qué versión se muestra primero, conserva el mismo ancho en cada comparación y repite a 390 y 1200 píxeles. Registra destino del primer clic, éxito de la tarea y tiempo desde que se ve la portada hasta alcanzar el destino.</p>
+                <p class="mb-0">Como propuesta de medición en GTM y GA4, distingue <code>click_protopred</code> de <code>click_contact_study</code>. Registra la sección y la variante. Un clic hacia la plataforma o hacia el correo mide intención de continuar.</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
+              data-bs-target="#entrega-ux" aria-expanded="false" aria-controls="entrega-ux">3. Qué entregar</button></h3>
+            <div id="entrega-ux" class="accordion-collapse collapse" data-bs-parent="#protocolo-ux">
+              <div class="accordion-body">Presenta una evidencia de la portada, una hipótesis priorizada, el prototipo editado y una tabla de resultados con versión, tarea, ancho, primer clic, éxito y tiempo. Explica qué incertidumbre queda con la muestra del aula.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="case-footer"><div class="container py-3">Prototipo académico del Reto 10 · <a href="../../documentacion/Guia_docente.md">Guía docente</a></div></footer>
+</body>
+</html>
